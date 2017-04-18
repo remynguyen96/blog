@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col m2 sidebar_left" *ngIf="middlewareMenu" >
+    <ul class="collection with-header blue-grey darken-2">
+          <!--  about me -->
+          <a [routerLink]="['user']" routerLinkActive="active" class="collection-header waves-effect waves-light">
+              <img src="../../../assets/images/radu-emanuel-15870.jpg" alt="images" class="circle">
+              <div>
+                <p><strong>Remy Nguyen</strong></p>
+                <span>Site Administrator</span>
+              </div>
+          </a>
+          <!--  LOgin -->
+          <a [routerLink]="[{outlets: {'loginPage' : ['login']}}]" routerLinkActive="active" class="collection-item waves-effect waves-light">
+            <i class="material-icons">view_module</i>
+            <span class="name">Login</span>
+          </a>
+          <!--  blogs -->
+          <a [routerLink]="['blogs']" routerLinkActive="active" class="collection-item waves-effect waves-light">
+            <i class="material-icons">view_module</i>
+            <span class="name">Blogs</span>
+            <span class="badge new">4</span>
+          </a>
+          <!--  categories -->
+          <a [routerLink]="['categories']" routerLinkActive="active" class="collection-item waves-effect waves-light">
+            <i class="material-icons">view_module</i>
+            <span class="name">Categories</span>
+            <i class="material-icons secondary-content">arrow_drop_down</i>
+          </a>
+          <!--  menu -->
+          <a [routerLink]="['menu']" routerLinkActive="active" [queryParams]="{pagination : 1}" class="collection-item waves-effect waves-light">
+            <i class="material-icons">view_module</i>
+            <span class="name">Menu</span>
+            <i class="material-icons secondary-content">arrow_drop_down</i>
+          </a>
+          <!--  settings -->
+          <a [routerLink]="['settings']" routerLinkActive="active" class="collection-item waves-effect waves-light">
+            <i class="material-icons">view_module</i>
+            <span class="name">Settings</span>
+            <i class="material-icons secondary-content">arrow_drop_down</i>
+          </a>
+          <!--  events -->
+          <a [routerLink]="['events']" routerLinkActive="active" class="collection-item waves-effect waves-light">
+            <i class="material-icons">events</i>
+            <span class="name">Events</span>
+            <i class="material-icons secondary-content">arrow_drop_down</i>
+          </a>
+          <!--   -->
+    </ul>
+  </div>
+  <!-- Content -->
+  <div class="col m10 sidebar_right">
+    <div class="template_router">
+      <router-outlet></router-outlet>
+      <router-outlet name="loginPage"></router-outlet>
+    </div>
+    <footer class="page-footer">
+       <div class="footer-copyright">
+         <div class="container center-align">
+         Site Admin Page Made By Remy Nguyen © 2017 Copyright Text
+         </div>
+       </div>
+    </footer>
+  </div>
+</div>

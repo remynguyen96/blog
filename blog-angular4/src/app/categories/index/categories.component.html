@@ -1,0 +1,41 @@
+<div id="raysDemoHolder">
+	<a href="/" id="raysLogo">David Walsh Blog</a>
+	<div id="rays"></div>
+</div>
+
+
+<div>
+          <h1>Welcome to bookshow.com</h1>
+          <span>Welcome User</span>
+          <p>Currently, Number of Tickets available are: {{ticketCount}}</p>
+          <button (click)="bookShow()" class="btn waves-effect waves-light">Book Ticket</button>
+      </div>
+
+
+<h4>
+  <a class="btn wave-effect waves-light" routerLink="create">Create</a>
+</h4>
+
+
+
+<hr>
+<hr>
+<hr>
+<hr>
+
+<div id="add-new-post">
+    <input [(ngModel)]="post.title" placeholder="New post"/>
+    <button (click)="save()">Add</button>
+</div>
+<div>
+    <h3>Posts</h3>
+    <div class="grid grid-pad">
+        <div *ngFor="let post of posts" class="col-2">
+            <div class="module post">
+                <p>{{post.name}} ---
+                  <button class="delete-button" (click)="deletePost(post, $event)">X</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
