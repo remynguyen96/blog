@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col m2 sidebar_left" *ngIf="middlewareMenu" >
+<div class="row" *ngIf="middlewareMenu; else loginPage">
+  <div class="col m2 sidebar_left" >
     <ul class="collection with-header blue-grey darken-2">
           <!--  about me -->
           <a [routerLink]="['user']" routerLinkActive="active" class="collection-header waves-effect waves-light">
@@ -8,11 +8,6 @@
                 <p><strong>Remy Nguyen</strong></p>
                 <span>Site Administrator</span>
               </div>
-          </a>
-          <!--  LOgin -->
-          <a [routerLink]="[{outlets: {'loginPage' : ['login']}}]" routerLinkActive="active" class="collection-item waves-effect waves-light">
-            <i class="material-icons">view_module</i>
-            <span class="name">Login</span>
           </a>
           <!--  blogs -->
           <a [routerLink]="['blogs']" routerLinkActive="active" class="collection-item waves-effect waves-light">
@@ -51,7 +46,6 @@
   <div class="col m10 sidebar_right">
     <div class="template_router">
       <router-outlet></router-outlet>
-      <router-outlet name="loginPage"></router-outlet>
     </div>
     <footer class="page-footer">
        <div class="footer-copyright">
@@ -62,3 +56,6 @@
     </footer>
   </div>
 </div>
+<ng-template #loginPage>
+  <router-outlet></router-outlet>
+</ng-template>

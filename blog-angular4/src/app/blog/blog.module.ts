@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Title } from "@angular/platform-browser";
 ////////////////
 import { BlogRoutingModule } from "./blog.routing";
@@ -12,13 +13,12 @@ import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { DetailComponent } from './detail/detail.component';
 
-
-
-import { GlobalAuthGuard } from "../global-shared/global.authguard";
 @NgModule({
   imports: [
     CommonModule,
     BlogRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     BlogDirective,
@@ -29,6 +29,6 @@ import { GlobalAuthGuard } from "../global-shared/global.authguard";
     EditComponent,
     DetailComponent,
   ],
-  providers:[Title,BlogService,GlobalAuthGuard],
+  providers:[Title,BlogService],
 })
 export class BlogModule { }

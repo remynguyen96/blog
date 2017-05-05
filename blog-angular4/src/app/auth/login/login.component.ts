@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(){
+  login(e){
+    e.preventDefault();
     this.authService.handingLogin(this.infomation);
   }
 

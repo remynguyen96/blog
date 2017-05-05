@@ -2,7 +2,10 @@
 
 <h4>Blog has built by Laravel 5.4 and Angular v4.0  made by Remy Nguyen</h4>
 
-<p align="center"><img  src="http://johnmann.org/blog/wp-content/uploads/2017/03/angular.png"></p>
+## About Angular v4.0
+
+<p align="center"><img src="http://johnmann.org/blog/wp-content/uploads/2017/03/angular.png"></p>
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

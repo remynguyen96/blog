@@ -13,7 +13,7 @@ import { AuthService } from "../auth/shared/auth.service";
 })
 export class AppComponent implements OnInit {
 
-  private middlewareMenu : boolean = false;
+  middlewareMenu : boolean = false;
 
   constructor(
     private titleService : Title,
@@ -24,7 +24,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(){
     this.authService.MiddlewareMenu.subscribe(
-      middleware => this.middlewareMenu = middleware
+      middleware => {
+        // console.log(middleware);
+        this.middlewareMenu = middleware
+      }
     );
   }
 }

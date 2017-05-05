@@ -4,9 +4,9 @@ use App\Repositories\EloquentBuilder;
 
 class BlogBuilder extends EloquentBuilder implements BlogInterface{
 
-  protected function getEloquent(){
-    return \App\Blog::class;
-  }
+  // protected function getEloquent(){
+  //   return \App\Blog::class;
+  // }
 
   protected function getBuilder(){
     return 'blogs';

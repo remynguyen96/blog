@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { GlobalAuthGuard } from "../global-shared/global.authguard";
+// import { GlobalAuthGuard } from "../global-shared/global.authguard";
 //////////////////////
 import { BlogComponent } from "./index/blog.component";
 import { DetailComponent } from "./detail/detail.component";
@@ -10,7 +10,14 @@ const routes : Routes = [
   {
     path : '',
     component : BlogComponent,
-    canActivate: [GlobalAuthGuard],
+    // canActivate: [GlobalAuthGuard],
+    // canActivateChild: [GlobalAuthGuard],
+    // children: [
+    //   {
+    //     path : 'create',
+    //     component : CreateComponent,
+    //   },
+    // ]
   },
   {
     path : 'create',

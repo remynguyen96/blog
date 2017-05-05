@@ -5,10 +5,6 @@ use App\Repositories\EloquentBuilder;
 
 class CategoryBuilder extends EloquentBuilder implements CategoryInterface {
 
-  protected function getEloquent(){
-    return \App\Category::class;
-  }
-
   protected function getBuilder(){
     return 'categories';
   }

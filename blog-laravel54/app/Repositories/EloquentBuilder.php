@@ -5,20 +5,20 @@ use DB;
 
 abstract class EloquentBuilder implements InterfaceBuilder{
 
-    protected $eloquent;
+    // protected $eloquent;
     protected $builder;
 
     public function __construct(){
         $this->setBuilder();
-        $this->setEloquent();
+        // $this->setEloquent();
     }
-    abstract protected function getEloquent();
+    // abstract protected function getEloquent();
+
+    // protected function setEloquent(){
+    //     return $this->eloquent = app()->make($this->getEloquent());
+    // }
 
     abstract protected function getBuilder();
-
-    protected function setEloquent(){
-        return $this->eloquent = app()->make($this->getEloquent());
-    }
 
     protected function setBuilder(){
         return $this->builder = DB::table($this->getBuilder());

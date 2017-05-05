@@ -2,22 +2,23 @@
   <div class="row">
     <div class="col m6 offset-m3">
       <h4 class="center-align">Login</h4>
-      <!-- <form> -->
+      <form #dataLogin="ngForm">
         <div class="input-field">
-          <input type="text" id="email" [(ngModel)]="infomation.email">
+          <input type="text" id="email" [(ngModel)]="infomation.email" name="email">
           <label for="email">Email</label>
         </div>
         <div class="input-field">
-          <input type="text" id="password" [(ngModel)]="infomation.password">
+          <input type="text" id="password" [(ngModel)]="infomation.password" name="password">
           <label for="password">Password</label>
         </div>
         <div class="center-align">
-          <button type="button" class="btn waves-effect waves-light" (click)="login()">
+          <button type="submit" class="btn waves-effect waves-light" (click)="login($event)">
             Login
             <i class="material-icons right">send</i>
           </button>
         </div>
-      <!-- </form> -->
+      </form>
+       <p class="z-depth-4">{{dataLogin.value | json}}</p>
     </div>
   </div>
 </div>

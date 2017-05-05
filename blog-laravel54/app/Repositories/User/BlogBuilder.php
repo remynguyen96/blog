@@ -4,10 +4,6 @@ use App\Repositories\EloquentBuilder;
 
 class UserBuilder extends EloquentBuilder implements UserInterface{
 
-  protected function getEloquent(){
-    return \App\User::class;
-  }
-
   protected function getBuilder(){
     return 'users';
   }

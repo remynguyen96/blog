@@ -6,23 +6,18 @@ import { HttpModule } from '@angular/http';
 ////////////////////
 import { AppRoutingModule } from "./app.routing";
 import { AuthService } from "./auth/shared/auth.service";
-import { GlobalAuthGuard } from "./global-shared/global.authguard";
-import { GlobalDeactiveGuard } from "./global-shared/global.deactiveguard";
+import { GlobalAuthGuard } from "./auth/shared/auth.guard";
+import { GlobalDeactiveGuard } from "./auth/shared/auth.deactiveGuard";
 ////////////////////
 import { AppComponent } from './index/app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { LoginComponent } from './auth/login/login.component';
-import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { EventsComponent } from './events/events.component';
-
 
 @NgModule({
   declarations: [
     ////////////////////
     AppComponent,
     NotFoundComponent,
-    LoginComponent,
-    SignUpComponent,
     EventsComponent,
   ],
   imports: [
@@ -33,9 +28,9 @@ import { EventsComponent } from './events/events.component';
     HttpModule,
     AppRoutingModule,
   ],
-  providers: [GlobalDeactiveGuard,AuthService,GlobalAuthGuard,Title],
+  providers: [GlobalDeactiveGuard, AuthService, GlobalAuthGuard, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-// npm install @angular/animations --save
+// npm install @angular/animations@latest --save
 // npm install zone.js@0.8.5 --save

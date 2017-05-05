@@ -9,30 +9,35 @@ export class AuthService extends GlobalService {
 
   protected database : string = 'users';
 
-  private activeLogin : boolean = false;
+  public activeLogin : boolean = false;
 
-  MiddlewareMenu = new EventEmitter<boolean>();
+  MiddlewareMenu : EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
   constructor(private router : Router, private http : Http) {
     super(http,router)
   }
 
-  handingLogin(infomation : Login){
+  handingLogin(infomation : Login): any{
     if(infomation.email === 'remy' && infomation.password === '2007'){
       this.activeLogin = true;
       this.MiddlewareMenu.emit(true);
-      this.router.navigate(['/blogs']);
+      this.router.navigate(['/']);
     }else{
       this.activeLogin = false;
       this.MiddlewareMenu.emit(false);
     }
   }
 
-  handingAuthentication(){
+  handingAuthentication(): boolean{
     return this.activeLogin;
   }
 
+
+  logOut() : void{
+    this.activeLogin = false;
+    this.router.navigate(['/auth/login']);
+  }
 
 
 }

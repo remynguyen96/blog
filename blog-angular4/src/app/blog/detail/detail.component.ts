@@ -23,30 +23,26 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+      // this.route.data.subscribe(
+      //   data => console.log(data)
+      // )
+
+      // console.log(this.router.url); //  /routename
+
       this.subscription = this.route.params.subscribe(
         (params : any) => {
           this.slug = params['slug'];
-          console.log(params);
+          this.blogService.getDetail(this.slug).subscribe(
+            data => {
+              this.titleService.setTitle(data.title);
+              this.dataBlog = data;
+              this.dataBlog.images = `${this.blogService.URLservice}/public/images/${data.images}`;
+              // console.log(this.dataBlog);
+            },
+            error => console.log("get data error :"+error),
+          );
         }
       );
-
-      this.route.data.subscribe(
-        data => console.log(data)
-      )
-      // this.subscription = this.route.params.subscribe(
-      //   (params : any) => {
-      //     this.slug = params['slug'];
-      //     this.blogService.getDetail(this.slug).subscribe(
-      //       data => {
-      //         this.titleService.setTitle(data.title);
-      //         this.dataBlog = data;
-      //         this.dataBlog.images = `${this.blogService.URLservice}/public/images/${data.images}`;
-      //         console.log(this.dataBlog);
-      //       },
-      //       error => console.log("get data error :"+error),
-      //     );
-      //   }
-      // );
   }
 
   ngOnDestroy() {
