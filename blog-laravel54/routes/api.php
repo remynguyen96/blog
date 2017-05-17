@@ -41,7 +41,13 @@ Route::get('/get-all',[
 
 
 // Route::group(['middleware' => 'jwt.auth'],function(){
-  ////////////// Blog
+
+  /**
+    * Task: handing/users
+    * Author: Remy Nguyen
+    * Date created: 2017/05/16 16:05 PM
+    * @return Users
+    */
   Route::post('login',[
     'uses' => 'backend\UserController@userLogin',
     'as' => 'user.login.backend',
@@ -50,7 +56,24 @@ Route::get('/get-all',[
     'uses' => 'backend\UserController@userSignUp',
     'as' => 'user.register.backend',
   ]);
-  ////////////// Blog
+  Route::post('verified-users',[
+    'uses' => 'backend\UserController@verifiedUsers',
+    'as' => 'user.verified',
+  ]);
+  Route::post('forgot-password',[
+    'uses' => 'backend\UserController@forgotPassword',
+    'as' => 'user.forgot.password',
+  ]);
+  Route::put('update-password',[
+    'uses' => 'backend\UserController@updatePassword',
+    'as' => 'user.update.password',
+  ]);
+  /**
+    * Task: handing/blogs
+    * Author: Remy Nguyen
+    * Date created: 2017/05/16 16:05 PM
+    * @return Users
+    */
   Route::get('blogs/get-all',[
     'uses' => 'backend\BlogController@getAll',
     'as' => 'get.all.blogs',
@@ -75,7 +98,12 @@ Route::get('/get-all',[
     'uses' => 'backend\BlogController@removeItem',
     'as' => 'remove.item.blogs',
   ])->where('slug','[a-z0-9-]+');
-  ////////////// Category
+  /**
+    * Task: handing/category
+    * Author: Remy Nguyen
+    * Date created: 2017/05/16 16:05 PM
+    * @return Category
+    */
   Route::get('categories/get-all',[
     'uses' => 'backend\CategoryController@getAll',
     'as' => 'get.all.categories',
@@ -96,7 +124,12 @@ Route::get('/get-all',[
     'uses' => 'backend\CategoryController@removeItem',
     'as' => 'remove.item.categories',
   ])->where('slug','[a-z0-9-]+');
-  ////////////// Menu
+  /**
+    * Task: handing/menu
+    * Author: Remy Nguyen
+    * Date created: 2017/05/16 16:05 PM
+    * @return Menu
+    */
   Route::get('menus/get-all',[
     'uses' => 'backend\MenuController@getAll',
     'as' => 'get.all.menus',
@@ -117,7 +150,12 @@ Route::get('/get-all',[
     'uses' => 'backend\MenuController@removeItem',
     'as' => 'remove.item.menus',
   ])->where('slug','[a-z0-9-]+');
-  ////////////// Settings
+  /**
+    * Task: handing/settings
+    * Author: Remy Nguyen
+    * Date created: 2017/05/16 16:05 PM
+    * @return Settings
+    */
   Route::get('settings/get-all',[
     'uses' => 'backend\SettingController@getAll',
     'as' => 'get.all.settings',
@@ -138,6 +176,5 @@ Route::get('/get-all',[
     'uses' => 'backend\SettingController@removeItem',
     'as' => 'remove.item.settings',
   ])->where('slug','[a-z0-9-]+');
-  //
 
 // });

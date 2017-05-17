@@ -28,7 +28,7 @@ import { EventsComponent } from './events/events.component';
     HttpModule,
     AppRoutingModule,
   ],
-  providers: [GlobalDeactiveGuard, AuthService, GlobalAuthGuard, Title],
+  providers: [Title, GlobalDeactiveGuard, AuthService, GlobalAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

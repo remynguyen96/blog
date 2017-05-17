@@ -11,6 +11,8 @@ export class LoginComponent implements OnInit {
 
   private infomation : Login = new Login();
 
+
+
   constructor(
     private titleService : Title,
     private authService : AuthService,
@@ -19,11 +21,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
-  login(e){
-    e.preventDefault();
-    this.authService.handingLogin(this.infomation);
+  login(data){
+    this.authService.handingLogin(this.infomation).subscribe(
+        decodedToken => console.log(decodedToken),
+        errorLogin => console.log(`error : ${errorLogin}`)
+      );
   }
+
 
 }

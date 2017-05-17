@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { routerTransition } from "../../global-shared/global.animation";
 import { Title } from "@angular/platform-browser";
 import { BlogService } from "../shared/blog.service";
+import { AuthService } from "../../auth/shared/auth.service";
 import { Router } from "@angular/router";
 declare var $ : any;
 @Component({
@@ -9,7 +10,8 @@ declare var $ : any;
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss'],
   animations: [routerTransition()],
-  host : { '[@routerTransition]' : '' }
+  host : { '[@routerTransition]' : '' },
+  // providers: [AuthService]
 
 })
 export class BlogComponent implements OnInit {
@@ -22,6 +24,7 @@ export class BlogComponent implements OnInit {
     private titleService : Title,
     private router : Router,
     private blogService : BlogService,
+    private authService : AuthService,
   ) {
     titleService.setTitle('Blog Infomation');
   }
@@ -40,16 +43,21 @@ export class BlogComponent implements OnInit {
     // this.scrollMore();
     this.blogService.getAll().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.dataBlog = data;
       },
       error => console.log("get data error :"+error),
     )
+
+    // this.authService.NumberLogin.subscribe(data => {
+    //   console.log(data);
+    // });
+    
   }
 
   movePageDetail(e,data){
     e.preventDefault();
-     this.router.navigate(['/blogs',data.slug],data );
+    this.router.navigate(['/blogs',data.slug],data );
     //  this.router.navigate(['/component2'], { queryParams: { page: pageNum } });
   }
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Title } from "@angular/platform-browser";
 ////////////////
+import { AuthService } from "../auth/shared/auth.service";
 import { BlogRoutingModule } from "./blog.routing";
 import { BlogService } from "./shared/blog.service";
 import { BlogDirective } from './shared/blog.directive';
@@ -29,6 +30,6 @@ import { DetailComponent } from './detail/detail.component';
     EditComponent,
     DetailComponent,
   ],
-  providers:[Title,BlogService],
+  providers:[Title,BlogService,AuthService],
 })
 export class BlogModule { }

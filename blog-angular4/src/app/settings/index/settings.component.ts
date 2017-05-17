@@ -16,6 +16,11 @@ export class SettingsComponent implements OnInit,OnDestroy {
   private pagin : number;
   private subscription : Subscription;
 
+  usuario: any = {
+    nome: null,
+    email: null
+  }
+
   constructor(
     private titleService : Title,
     private router : Router,
@@ -41,6 +46,10 @@ export class SettingsComponent implements OnInit,OnDestroy {
     this.router.navigate(['/settings'],{
       queryParams : {'pagination' : ++this.pagin}
     });
+  }
+
+  onSubmit(data){
+    console.log(data.value);
   }
 
 

@@ -14,10 +14,11 @@ export class CreateComponent implements OnInit {
     private titleService : Title,
     private _blogService : BlogService,
   ) {
-    titleService.setTitle('Create New Blog')
+      titleService.setTitle('Create New Blog')
   }
 
   ngOnInit() {
+
   }
 
 

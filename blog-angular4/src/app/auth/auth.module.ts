@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 ////////////////
 import { AuthRoutingModule } from "./auth.routing";
 import { AuthService } from "./shared/auth.service";
+import { GlobalAuthGuard } from "./shared/auth.guard";
 ////////////////
 import { LoginComponent } from "./login/login.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";

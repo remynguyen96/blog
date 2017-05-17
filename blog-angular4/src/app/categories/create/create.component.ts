@@ -14,13 +14,12 @@ export class CreateComponent implements OnInit {
     private _categoryService : CategoryService
   ) {
     titleService.setTitle('Create New Category For Blog');
-    this._categoryService.totalTicketCount.subscribe(totalTicketCount => {
-            this.ticketCount = totalTicketCount
-    });
   }
 
   ngOnInit() {
-
+    this._categoryService.totalTicketCount.subscribe(totalTicketCount => {
+            this.ticketCount = totalTicketCount
+    });
   }
 
   bookTicket = () => {

@@ -2,23 +2,30 @@
   <div class="row">
     <div class="col m6 offset-m3">
       <h4 class="center-align">Login</h4>
-      <form #dataLogin="ngForm">
+      <form #dataLogin="ngForm" (ngSubmit)="login(dataLogin)">
+
         <div class="input-field">
-          <input type="text" id="email" [(ngModel)]="infomation.email" name="email">
+          <input type="email" id="email" [(ngModel)]="infomation.email" name="email" #email="ngModel" required email autocomplete="off">
           <label for="email">Email</label>
+          <p *ngIf="!email.valid && email.touched"
+           class="errors red white-text center-align">
+            Email not valid !
+          </p>
         </div>
+
         <div class="input-field">
-          <input type="text" id="password" [(ngModel)]="infomation.password" name="password">
+          <input type="password" id="password" [(ngModel)]="infomation.password" name="password" #password="ngModel" required autocomplete="off">
           <label for="password">Password</label>
+          <p class="errors red white-text center-align" *ngIf="!password.valid && password.touched">Please enter password !</p>
         </div>
+
         <div class="center-align">
-          <button type="submit" class="btn waves-effect waves-light" (click)="login($event)">
+          <button [disabled]="!dataLogin.valid" type="submit" class="btn waves-effect waves-light">
             Login
             <i class="material-icons right">send</i>
           </button>
         </div>
       </form>
-       <p class="z-depth-4">{{dataLogin.value | json}}</p>
     </div>
   </div>
 </div>

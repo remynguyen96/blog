@@ -1,6 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import { Observable } from "rxjs/Rx";
-import { Http, Response, RequestOptions } from "@angular/http";
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Http, Response, Headers } from "@angular/http";
 import { Router } from "@angular/router";
 import { GlobalService } from "../../global-shared/global.service";
 import { Login } from "./login";
@@ -9,35 +10,42 @@ export class AuthService extends GlobalService {
 
   protected database : string = 'users';
 
-  public activeLogin : boolean = false;
+  isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  MiddlewareMenu : EventEmitter<boolean> = new EventEmitter<boolean>();
+  MiddlewareMenu : EventEmitter<boolean> = new EventEmitter<boolean>(false);
 
-
-  constructor(private router : Router, private http : Http) {
+  constructor(
+    private http : Http,
+    private router : Router,
+  ) {
     super(http,router)
   }
 
-  handingLogin(infomation : Login): any{
-    if(infomation.email === 'remy' && infomation.password === '2007'){
-      this.activeLogin = true;
-      this.MiddlewareMenu.emit(true);
-      this.router.navigate(['/']);
-    }else{
-      this.activeLogin = false;
-      this.MiddlewareMenu.emit(false);
-    }
+  handingLogin(infomation : Login): any {
+    let headers = new Headers({'X-Requested-With' : 'XMLHttpRequest'});
+    return this.http.post(`${this.URLservice}/api/login`,infomation,{headers : headers})
+                .map((response : Response) => {
+                  const token = response.json().token;
+                  const base64Url = token.split('.')[1];
+                  const base64 = base64Url.replace('-', '+').replace('_', '/');
+                  return {token: token, decoded: JSON.parse(window.atob(base64))};
+                }).do(
+                    tokenData => {
+                        this.MiddlewareMenu.emit(true);
+                        this.isLoggedIn.next(true);
+                        localStorage.setItem('token',tokenData.token);
+                        this.router.navigate(['/blogs']);
+                    }
+                );
   }
 
-  handingAuthentication(): boolean{
-    return this.activeLogin;
+  handingAuthentication() : Observable<boolean>{
+    return this.isLoggedIn.asObservable();
   }
 
-
-  logOut() : void{
-    this.activeLogin = false;
-    this.router.navigate(['/auth/login']);
-  }
-
-
+    // this.http.post(`${this.URLservice}/api/login`,infomation,{headers: headers})
+    // this.http.post(`${this.URLservice}/api/sign-up`,infomation,{headers: headers})
+    // this.http.post(`${this.URLservice}/api/verified-users`,infomation,{headers: headers})
+    // this.http.post(`${this.URLservice}/api/forgot-password`,infomation,{headers: headers})
+    // this.http.put(`${this.URLservice}/api/update-password`,infomation,{headers: headers})
 }

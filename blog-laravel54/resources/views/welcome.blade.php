@@ -63,6 +63,11 @@
                 margin-bottom: 30px;
             }
         </style>
+        <script type="text/javascript">
+        console.log('%cDừng lại!', 'color: red; font-size: 50px; text-shadow: 1px 1px 5px #000;');
+console.log('%cCó vẻ như bạn đang cố tình muốn xâm hại website của tôi !', 'color: #444; font-size: 25px;');
+console.log('%cTruy cập https://www.facebook.com/remynguyen1996 để biết nói chuyện với tôi.', 'color: #444; font-size: 25px;');
+        </script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title } from "@angular/platform-browser";
+import { Title as TitleCategory } from "@angular/platform-browser";
 import { routerTransition } from "../../global-shared/global.animation";
 import { CategoryService } from "../shared/category.service";
 import { Observable } from "rxjs/Rx";
@@ -25,17 +25,18 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   private postsSubscription: AnonymousSubscription;
 
   constructor(
-    private titleService : Title,
+    private titleService : TitleCategory,
     private _categoryService : CategoryService
   ) {
-    titleService.setTitle('Category Infomation');
-    this._categoryService.totalTicketCount.subscribe(totalTicketCount => {
-        this.ticketCount = totalTicketCount
-    });
+      titleService.setTitle('Category Infomation');
   }
 
   ngOnInit() {
     this.refreshData();
+
+    this._categoryService.totalTicketCount.subscribe(totalTicketCount => {
+        this.ticketCount = totalTicketCount
+    });
   }
 
   ngOnDestroy() {

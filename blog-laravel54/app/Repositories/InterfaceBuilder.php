@@ -3,14 +3,14 @@ namespace App\Repositories;
 
 interface InterfaceBuilder {
 
-    public function getAll();
+    function getAll();
 
-    public function getDetail($typeof,$slug);
+    function getDetail($typeof,$slug);
 
-    public function create(array $attribute);
+    function create(array $attribute);
 
-    public function edit($typeof,$slug,array $attribute);
+    function edit($typeof,$slug,array $attribute);
 
-    public function remove($typeof,$slug);
+    function remove($typeof,$slug);
 
 }

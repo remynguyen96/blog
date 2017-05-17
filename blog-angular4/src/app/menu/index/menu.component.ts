@@ -30,6 +30,8 @@ export class MenuComponent implements OnInit {
     this.progress = 0;
     this._increaseProgress(() => console.log('Inside Done!'));
   }
+
+
   // Loop outside of the Angular zone
   // so the UI DOES NOT refresh after each setTimeout cycle
   processOutsideOfAngularZone() {
@@ -44,6 +46,8 @@ export class MenuComponent implements OnInit {
       })
     });
   }
+
+
   _increaseProgress(doneCallback: () => void) {
     this.progress += 1;
     console.log(`Current progress: ${this.progress}%`);

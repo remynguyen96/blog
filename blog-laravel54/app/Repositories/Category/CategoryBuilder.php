@@ -9,11 +9,11 @@ class CategoryBuilder extends EloquentBuilder implements CategoryInterface {
     return 'categories';
   }
 
-  public function categoryPublished(){
+  function categoryPublished(){
     return $this->builder->where('status',1)->get();
   }
 
-  public function categoryHidden(){
+  function categoryHidden(){
     return $this->builder->where('status',0)->get();
   }
 

@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions, URLSearchParams } from "@angular/http";
 import { Observable } from "rxjs/Rx";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Router } from "@angular/router";
+import { Login } from "../auth/shared/login";
 @Injectable()
 export class GlobalService {
-  public URLservice : string = "http://blog.app";
+  URLservice : string = "http://blog.app";
   protected database : string;
   protected options : any;
+
   constructor(private _http : Http , private _router : Router) {
     let headers = new Headers({ 'Content-Type' : 'application/json'});
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
@@ -31,34 +34,38 @@ export class GlobalService {
         // return Observable.throw(error.json() || 'Server error.');
   }
 
-  public getAll() : Observable<any> {
+  getAll() : Observable<any> {
     return this._http.get(`${this.getURL()}/get-all`,this.options)
                       .map((response : Response) => response.json() )
                       .catch(this.handleError);
   }
 
-  public getDetail(slug) : Observable<any> {
+  getDetail(slug) : Observable<any> {
     return this._http.post(`${this.getURL()}/get-item/${slug}`,this.options)
                       .map((response : Response) => response.json() )
                       .catch(this.handleError);
   }
 
-  public create(data : any) : Observable<any> {
+  create(data : any) : Observable<any> {
     return this._http.post(`${this.getURL()}/create-item`,data,this.options)
                       .map((response : Response) => response.json() )
                       .catch(this.handleError);
   }
 
-  public edit(slug,data : any) : Observable<any> {
+  edit(slug,data : any) : Observable<any> {
     return this._http.put(`${this.getURL()}/edit-item/${slug}`,data,this.options)
                       .map((response : Response) => response.json() )
                       .catch(this.handleError);
   }
 
-  public remove(slug) : Observable<Response> {
+  remove(slug) : Observable<Response> {
     return this._http.delete(`${this.getURL()}/remove-item/${slug}`,this.options)
                       .map((response : Response) => response.json() )
                       .catch(this.handleError);
+  }
+
+  getToken() : string{
+    return localStorage.getItem('token');
   }
 
   // protected delete(id: number): Observable<any> {

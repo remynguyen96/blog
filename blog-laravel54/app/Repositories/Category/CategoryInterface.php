@@ -3,8 +3,8 @@ namespace App\Repositories\Category;
 
 interface CategoryInterface{
 
-  public function categoryPublished();
+  function categoryPublished();
 
-  public function categoryHidden();
+  function categoryHidden();
 
 }

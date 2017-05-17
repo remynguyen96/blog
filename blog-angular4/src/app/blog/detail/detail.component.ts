@@ -26,7 +26,6 @@ export class DetailComponent implements OnInit, OnDestroy {
       // this.route.data.subscribe(
       //   data => console.log(data)
       // )
-
       // console.log(this.router.url); //  /routename
 
       this.subscription = this.route.params.subscribe(

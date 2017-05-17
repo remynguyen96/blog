@@ -1,3 +1,14 @@
-<p>
-  events works!
-</p>
+<div class="col m6 offset-m3">
+  <h2>events works!</h2>
+  <form #dataForm="ngForm">
+    <div class="input-field">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" [(ngModel)]="infoMessage.username">
+    </div>
+    <div class="input-field">
+      <label for="message">Message</label>
+      <input type="text" name="message" id="message" [(ngModel)]="infoMessage.message">
+    </div>
+    <button type="submit" class="btn waves-effect waves-light" (click)="sendMessage()">Send</button>
+  </form>
+</div>

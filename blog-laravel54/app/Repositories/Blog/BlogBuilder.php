@@ -12,7 +12,7 @@ class BlogBuilder extends EloquentBuilder implements BlogInterface{
     return 'blogs';
   }
 
-  public function blogPrivate(){
+  function blogPrivate(){
     return $this->builder->where('status',0)->get();
   }
 
