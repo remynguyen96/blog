@@ -12,18 +12,24 @@ class RoleSeeder extends Seeder
     public function run()
     {
         $user = new Role();
-        $user->name = "User";
-        $user->description = "A Normal User";
+        $user->name = "Member";
+        $user->description = "Subscriber";
+        $user->created_at = \Carbon\Carbon::now();
+        $user->updated_at = \Carbon\Carbon::now();
         $user->save();
 
         $author = new Role();
-        $author->name = "Author";
-        $author->description = "An Author";
+        $author->name = "Editor";
+        $author->description = "Editor";
+        $author->created_at = \Carbon\Carbon::now();
+        $author->updated_at = \Carbon\Carbon::now();
         $author->save();
 
         $admin = new Role();
         $admin->name = "Admin";
-        $admin->description = "A Admin";
+        $admin->description = "Administrator";
+        $admin->created_at = \Carbon\Carbon::now();
+        $admin->updated_at = \Carbon\Carbon::now();
         $admin->save();
     }
 }

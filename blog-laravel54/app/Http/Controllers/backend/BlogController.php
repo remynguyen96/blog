@@ -4,8 +4,10 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 use App\Blog;
 use App\Repositories\Blog\BlogInterface;
+
 class BlogController extends Controller
 {
     protected $blogService;

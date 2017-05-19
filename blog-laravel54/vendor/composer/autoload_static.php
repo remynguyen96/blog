@@ -335,6 +335,7 @@ class ComposerStaticInitf498e9632996d83f94e32b43e4f574df
         'CorsServiceTest' => __DIR__ . '/..' . '/barryvdh/laravel-cors/tests/CorsServiceTest.php',
         'CreateBlogsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_06_234213_create-blogs-table.php',
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_06_234055_create-categories-table.php',
+        'CreateFavoriteBlogsTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_25_051240_create-favorite_blogs-table.php',
         'CreateJobsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_06_234435_create_jobs_table.php',
         'CreateMenusTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_06_215753_create_menus_table.php',
         'CreatePagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_182208_create-pages-table.php',

@@ -7,4 +7,12 @@ class UserBuilder extends EloquentBuilder implements UserInterface{
     return 'users';
   }
 
+  function login($email,$password){
+
+  }
+
+  function logout(){
+
+  }
+
 }

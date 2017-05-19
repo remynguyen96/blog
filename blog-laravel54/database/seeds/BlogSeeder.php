@@ -198,7 +198,7 @@ class BlogSeeder extends Seeder
         $BlogRoot8->category()->attach($category_homepage);
         for ($i = 9; $i <= 50 ; $i++) {
           $BlogRoot9 = Blog::create([
-            'images' => 'background1.jpg',
+            'images' => $faker->randomElement($array = array ('background1.jpg','background2.jpg','background3.jpg','background4.jpg')),
             'library_images' => json_encode($arrImage),
             'title' => 'Post '.$i,
             'slug' => 'post-'.$i,
@@ -210,5 +210,8 @@ class BlogSeeder extends Seeder
           $BlogRoot9->category()->attach($category_recommand);
           $BlogRoot9->category()->attach($category_homepage);
         }
+          App\User::all()->each(function($user){
+            $user->favoriteBlog()->attach(App\Blog::get(['id'])->where('id','>',10)->where('id','<','16'));
+          });
     }
 }

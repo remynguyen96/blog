@@ -14,8 +14,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create(User::class);
-        $role_user = Role::where('name','User')->first();
-        $role_author = Role::where('name','Author')->first();
+        $role_user = Role::where('name','Member')->first();
+        $role_author = Role::where('name','Editor')->first();
         $role_admin = Role::where('name','Admin')->first();
 
         factory('App\User',10)->create()->each(function($user){

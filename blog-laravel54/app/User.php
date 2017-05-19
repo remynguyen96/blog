@@ -14,9 +14,9 @@ class User extends Authenticatable
      *
      * @var array
      */
-     
+
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password','ip_address','remember_token'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -44,4 +44,10 @@ class User extends Authenticatable
     public function profile(){
       return $this->hasOne(Profile::class);
     }
+
+    public function favoriteBlog(){
+      return $this->belongsToMany(Blog::class,'favorite_blogs','user_id','blog_id');
+    }
+
+
 }

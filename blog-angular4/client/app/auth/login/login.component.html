@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col m12">
+      <!-- NOTE: Introduce Page-->
+      <div class="center-align images_title">
+        <img class="responsive-img" src="http://i.imgur.com/ax0NCsK.gif" />
+      </div>
+      <h5 class="indigo-text center-align">Login Blogs</h5>
+      <div class="section"></div>
+      <!-- NOTE: Form Login -->
+      <div class="row">
+        <div class="z-depth-2 grey lighten-3 col m6 offset-m3 handing_form">
+          <div class="row">
+
+            <form [formGroup]="infomationLogin" (ngSubmit)="loginBlogs()">
+              <!-- NOTE: Field Email -->
+              <div class='input-field col m12'>
+                <input type='text' id='email' formControlName="email" [ngClass]="{
+                  'validErr' : infomationLogin.get('email').errors && (infomationLogin.get('email').touched || infomationLogin.get('email').dirty), 'validFul' : infomationLogin.get('email').errors === null }" autocomplete="off" />
+                <label for='email'>Enter your email</label>
+              </div>
+              <!-- NOTE: Field Password -->
+              <div class='input-field col m12'>
+                <input type='password' id='password' formControlName="password" [ngClass]="{'validErr' : infomationLogin.get('password').errors && (infomationLogin.get('password').touched || infomationLogin.get('password').dirty),
+                'validFul' : infomationLogin.get('email').errors === null }"
+                autocomplete="off"/>
+                <label for='password'>Enter your password</label>
+              </div>
+
+              <!-- NOTE: Link Forgot Password -->
+              <label class="right">
+                <a [routerLink]="['/auth/reset-password']" class="red-text text-accent-3">
+                  <b>Forgot Password ?</b>
+                </a>
+              </label>
+
+              <!-- NOTE: Btn Submit -->
+              <div class="col m12">
+                <button type="submit" [disabled]="!infomationLogin.valid" class='btn waves-effect waves-light indigo'>
+                  Sign in
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+        <!-- NOTE: Loading -->
+        <div class="loading" *ngIf="loading">
+          <mz-progress
+            mz-progress
+            [backgroundClass]="'indigo accent-1'"
+            [progressClass]="'indigo accent-4'">
+          </mz-progress>
+        </div>
+      </div>
+
+      <!-- NOTE: Link Sign Up -->
+      <div class="row">
+        <div class="center-align">
+          <a [routerLink]="['/auth/sign-up']" class="col m4 offset-m4 btn waves-effect waves-light indigo">Create Acount</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

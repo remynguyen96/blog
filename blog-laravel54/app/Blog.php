@@ -21,6 +21,10 @@ class Blog extends Node
     return $this->belongsToMany(Category::class,'category_blog','blog_id','category_id');
   }
 
+  public function favoriteUser(){
+    return $this->belongsToMany(User::class,'favorite_blogs','blog_id','user_id');
+  }
+
   // connect controller for backend
 
 

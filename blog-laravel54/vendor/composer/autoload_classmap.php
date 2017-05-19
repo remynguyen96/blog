@@ -12,6 +12,7 @@ return array(
     'CorsServiceTest' => $vendorDir . '/barryvdh/laravel-cors/tests/CorsServiceTest.php',
     'CreateBlogsTable' => $baseDir . '/database/migrations/2017_04_06_234213_create-blogs-table.php',
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2017_04_06_234055_create-categories-table.php',
+    'CreateFavoriteBlogsTable' => $baseDir . '/database/migrations/2017_05_25_051240_create-favorite_blogs-table.php',
     'CreateJobsTable' => $baseDir . '/database/migrations/2017_04_06_234435_create_jobs_table.php',
     'CreateMenusTable' => $baseDir . '/database/migrations/2017_04_06_215753_create_menus_table.php',
     'CreatePagesTable' => $baseDir . '/database/migrations/2017_05_19_182208_create-pages-table.php',

@@ -1,0 +1,48 @@
+<div *ngIf="router.url!='/search'">
+  <div class="container">
+    <div class="row">
+      <form (ngSubmit)="Search()">
+        <div class="col m4 offset-m2 input-field">
+          <input type="text" name="search" id="search" [(ngModel)]="query">
+          <label for="search">Search For: {{query}}</label>
+        </div>
+        <div class="col m4 center-align">
+          <button class="btn waves-light waves-effect">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <form [formGroup]="dataGroup" (ngSubmit)="submitForm()">
+      <mz-input-container class="col m6 offset-m3">
+        <i mz-icon-mdi mz-input-prefix [icon]="'email'"></i>
+        <input formControlName="email" name="asdasas" mz-input [label]="'Email'" id='email' type="text">
+      </mz-input-container>
+
+
+
+      <mz-textarea-container class="col m8 offset-m2">
+        <i mz-icon-mdi mz-textarea-prefix [icon]="'message-reply-text'"></i>
+        <textarea formControlName="comment" mz-textarea
+          [label]="'Comment'"
+          id="comment"
+          length="120"></textarea>
+      </mz-textarea-container>
+
+      <button mz-button [disabled]="!dataGroup.valid">
+        <i mz-icon-mdi
+          [align]="'left'"
+          [icon]="'language-swift'"
+          >
+        </i>
+        Submit Form Filter
+      </button>
+    </form>
+    <div class="col m12 red white-text">
+      {{ dataGroup.value | json}}
+    </div>
+  </div>
+</div>

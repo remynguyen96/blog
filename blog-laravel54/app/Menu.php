@@ -1,11 +1,13 @@
 <?php
+
 namespace App;
+
 use Baum\Node;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use DB;
-/**
-* Menu
-*/
+use Validator;
+
 class Menu extends Node {
 
   /**
@@ -15,93 +17,57 @@ class Menu extends Node {
    */
   protected $table = 'menus';
 
-  protected $fillable = ['name','slug','parent_id','lft','rgt','depth'];
+  protected $fillable = ['parent_id','lft','rgt','depth','name','slug'];
 
   public $timestamps = true;
-  //////////////////////////////////////////////////////////////////////////////
 
-  //
-  // Below come the default values for Baum's own Nested Set implementation
-  // column names.
-  //
-  // You may uncomment and modify the following fields at your own will, provided
-  // they match *exactly* those provided in the migration.
-  //
-  // If you don't plan on modifying any of these you can safely remove them.
-  //
+  public function createRoot(array $data){
+      $menu = self::create($data);
+      return $menu->makeRoot();
+  }
 
-  // /**
-  //  * Column name which stores reference to parent's node.
-  //  *
-  //  * @var string
-  //  */
-  // protected $parentColumn = 'parent_id';
+  public function removeRoot($slug){
+    $root = self::where('alias',$slug)->where('parent_id',null)->first();
+    $root->children()->delete();
+    $root->delete();
+  }
 
-  // /**
-  //  * Column name for the left index.
-  //  *
-  //  * @var string
-  //  */
-  // protected $leftColumn = 'lft';
+  public function getMenuRoot($slug){
+    return self::where('alias',$slug)->where('parent_id',null)->first();
+  }
 
-  // /**
-  //  * Column name for the right index.
-  //  *
-  //  * @var string
-  //  */
-  // protected $rightColumn = 'rgt';
+  public function getMenuChild($id){
+    return self::where('id',$id)->first();
+  }
 
-  // /**
-  //  * Column name for the depth field.
-  //  *
-  //  * @var string
-  //  */
-  // protected $depthColumn = 'depth';
+  public function validate(array $data){
+    $validate = Validator::make($data,[
+        'name' => 'required | max:150',
+        'alias' => 'required | max:150',
+    ],[
+        'name.required' => 'Vui lòng nhập tên menu !',
+        'name.max' => 'Tên menu tối đa 150 ký tự !',
+        'alias.required' => 'Vui lòng nhập alias menu !',
+        'alias.max' => 'Tên alias menu tối đa 150 ký tự !',
+    ]);
+    if($validate->fails()){
+        return response()->json(['errors' => $validate->errors()->toArray()],202);
+    }
+  }
 
-  // /**
-  //  * Column to perform the default sorting
-  //  *
-  //  * @var string
-  //  */
-  // protected $orderColumn = null;
+  public function createChild(array $data,$slug){
+    $parent = $this->getMenuRoot($slug);
+    $createMenu = self::create($data);
+    return $createMenu->makeChildOf($parent);
+  }
 
-  // /**
-  // * With Baum, all NestedSet-related fields are guarded from mass-assignment
-  // * by default.
-  // *
-  // * @var array
-  // */
-  // protected $guarded = array('id', 'parent_id', 'lft', 'rgt', 'depth');
+  public function editChild(array $data){
+    return self::findOrFail($data['id'])->update($data);
+  }
 
-  //
-  // This is to support "scoping" which may allow to have multiple nested
-  // set trees in the same database table.
-  //
-  // You should provide here the column names which should restrict Nested
-  // Set queries. f.ex: company_id, etc.
-  //
+  public function removeChild($id){
+    return self::findOrFail($id)->delete();
+  }
 
-  // /**
-  //  * Columns which restrict what we consider our Nested Set list
-  //  *
-  //  * @var array
-  //  */
-  // protected $scoped = array();
-
-  //////////////////////////////////////////////////////////////////////////////
-
-  //
-  // Baum makes available two model events to application developers:
-  //
-  // 1. `moving`: fired *before* the a node movement operation is performed.
-  //
-  // 2. `moved`: fired *after* a node movement operation has been performed.
-  //
-  // In the same way as Eloquent's model events, returning false from the
-  // `moving` event handler will halt the operation.
-  //
-  // Please refer the Laravel documentation for further instructions on how
-  // to hook your own callbacks/observers into this events:
-  // http://laravel.com/docs/5.0/eloquent#model-events
 
 }

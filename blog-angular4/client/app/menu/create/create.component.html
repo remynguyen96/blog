@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <div class="row list-all-menu">
+    <div class="messSuccess"></div>
+    <div class="messError"></div>
+
+    <div class="col-sm-12 col-md-3 list-add-menu">
+      <div class="panel-group" id="accordion_menu">
+
+          <div class="panel panel-primary" *ngFor="let value of listSidebarMenu; let index = index">
+                <a class="panel-heading panel-title" data-toggle="collapse" data-parent="#accordion_menu" href="#pages{{index}}">
+                    {{value[0]}}
+                </a>
+                <div id="pages{{index}}" class="panel-collapse collapse">
+                  <div class="panel-body panel-menu">
+                          <form class="menuSidebar" name="{{value[1]}}" data-id="{{index}}">
+                              <ul>
+                                    <li *ngFor="let page of value[2]">
+                                        <input type="checkbox" id="{{value[1]}}/{{page.id}}/{{page.alias}}" value="{{value[1]}}/{{page.id}}/{{page.alias}}" name="{{page.name}}">
+                                        <label for="{{value[1]}}/{{page.id}}/{{page.alias}}">{{page.name}}</label>
+                                    </li>
+                              </ul>
+                              <button type="button" md-raised-button class="btn_addMenu">Add Menu</button>
+                          </form>
+                  </div>
+                </div>
+          </div>
+
+        <div class="panel panel-primary">
+          <div class="panel-heading panel-title" data-toggle="collapse" data-parent="#accordion_menu" href="#orthers">
+            Liên kết tùy chỉnh
+          </div>
+          <div id="orthers" class="panel-collapse collapse in">
+            <div class="panel-body panel-menu">
+              <form id="menuOrthers">
+                <div class="form-group">
+                  <label for="url">URL</label>
+                  <input type="text" class="form-control" id="url" value="http://">
+                </div>
+                <div class="form-group">
+                  <label for="url_name">Đường dẫn bằng chữ</label>
+                  <input type="text" class="form-control" id="url_name" required autofocus>
+                  <div class="errors"></div>
+                </div>
+                <button type="submit" md-raised-button class="btn_addMenu">Add Menu</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-9 list-menu">
+      <h3 class="text-center text-capitalize">Danh sách menu</h3>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+
+            <li role="presentation" class="callMenu" *ngFor="let menu of menuRoot">
+                <a md-raised-button href="#{{menu.alias}}" role="tab" data-toggle="tab">{{menu.name}}</a>
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </li>
+
+            <li role="presentation" id="createMenu">
+              <a href="#" md-raised-button role="tab" data-toggle="tab">Create New Menu</a>
+            </li>
+
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane"></div>
+            <div id="loading">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="#06ad5e">
+                <path opacity=".25" d="M16 0 A16 16 0 0 0 16 32 A16 16 0 0 0 16 0 M16 4 A12 12 0 0 1 16 28 A12 12 0 0 1 16 4"/>
+                <path d="M16 0 A16 16 0 0 1 32 16 L28 16 A12 12 0 0 0 16 4z">
+                  <animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="0.8s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

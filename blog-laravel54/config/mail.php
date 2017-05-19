@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'mailtrap.io'),
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 2525),
+    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'Support@blog.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'support@blogs.com'),
         'name' => env('MAIL_FROM_NAME', 'Remy Nguyen'),
     ],
 
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('a1285327665551'),
+    'username' => env('MAIL_USERNAME'),
 
-    'password' => env('0875bbf87059c7'),
+    'password' => env('MAIL_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------

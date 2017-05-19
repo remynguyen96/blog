@@ -1,0 +1,106 @@
+:host{
+  .sidebar_left,.sidebar_right{
+    min-height: 100vh;
+    margin-bottom: -20px;
+  }
+  .sidebar_left{
+    padding: 0px;
+    background: #384953;
+    position: fixed;
+    z-index: 999;
+    .collection.with-header{
+      margin: 0px;
+      border: none;
+      a{
+        background: #384953;
+        color: #bebebe;
+      }
+      .collection-header{
+        display: flex;
+        strong{
+          color: #fafafa;
+        }
+        img{
+          width: 50px;
+          height: 50px;
+        }
+        div{
+          flex-grow: 1;
+          line-height: 10px;
+          margin: -8px 0px 0px 10px;
+        }
+      }
+      .collection-item{
+        border: none;
+        i:first-child{
+          position: absolute;
+        }
+        .secondary-content{
+          -webkit-transition: transform .5s;
+          -moz-transition: transform .5s;
+          transition: transform .5s;
+          -webkit-transform: rotate(-90deg);
+          -moz-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+        }
+        .name{
+          padding-left: 32px;
+        }
+        &::before{
+          content: "";
+          position: absolute;
+          width: 7px;
+          height: 42px;
+          background: #21c685;
+          left: -10px;
+          margin-top: -10px;
+          -webkit-transition: left .4s;
+          -moz-transition: left .4s;
+          transition: left .4s;
+        }
+        &:hover{
+          background: #455d6b;
+          color: #fff;
+          &::before{
+            left:0px;
+          }
+        }
+      }
+      .active{
+        background: #455d6b;
+        color: #fff;
+        &::before{
+          left:0px;
+        }
+        .secondary-content{
+          -webkit-transform: rotate(90deg);
+          -moz-transform: rotate(90deg);
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+  }
+  ////////////////////////////////////////////////
+  .sidebar_right{
+    background: #455d6b;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    float: right;
+    .template_router{
+      flex: 1 0 auto;
+    }
+    footer{
+      padding-top: 0px;
+      background: transparent;
+      .footer-copyright{
+        background: transparent;
+      }
+    }
+  }
+
+
+
+
+}

@@ -1,0 +1,91 @@
+<div class="container">
+  <div class="row">
+    <div class="col m12">
+      <!-- NOTE: Introduce Page -->
+      <div class="center-align images_title">
+        <img class="responsive-img" src="http://i.imgur.com/ax0NCsK.gif" />
+      </div>
+      <h5 class="indigo-text center-align">Sign Up Account Blogs</h5>
+      <div class="section"></div>
+      <!-- NOTE: Form Sign Up -->
+      <div class="row">
+        <div class="z-depth-2 grey lighten-3 col m6 offset-m3 handing_form">
+          <div class="row">
+            <form [formGroup]="sign_up" (ngSubmit)="signUpBlogs()">
+              <!-- NOTE: Field Name -->
+              <div class='input-field col m12'>
+                <i class="material-icons prefix">person_outline</i>
+                <input type='text' id='name' formControlName="name" [ngClass]="{
+                  'validErr' : sign_up.get('name').errors && (sign_up.get('name').touched || sign_up.get('name').dirty), 'validFul' : sign_up.get('name').errors === null }" autocomplete="off" />
+                <label for='name'>Enter your name</label>
+                <!-- NOTE: Not run ng-template -->
+                <ng-template *ngIf="sign_up.get('name').errors">
+                  <p>
+                    {{ sign_up.get('name').errors.pattern| json}}
+                  </p>
+                </ng-template>
+              </div>
+              <!-- NOTE: Err Name -->
+              <label class="red-text text-darken-2 err" *ngIf="sign_up.get('name').errors">
+                <b *ngIf="sign_up.get('name').errors.pattern">Name doesn't has special character</b>
+              </label>
+              <!-- NOTE: Field Email -->
+              <div class='input-field col m12'>
+                <i class="material-icons prefix">mail_outline</i>
+                <input type='text' id='email' formControlName="email" [ngClass]="{
+                  'validErr' : sign_up.get('email').errors && (sign_up.get('email').touched || sign_up.get('email').dirty), 'validFul' : sign_up.get('email').errors === null }" autocomplete="off" />
+                <label for='email'>Enter your email</label>
+              </div>
+              <!-- NOTE: Field Password -->
+              <div class='input-field col m12'>
+                <i class="material-icons prefix">lock_outline</i>
+                <input type="password" id="password" formControlName="password" [ngClass]="{'validErr' : sign_up.get('password').errors && (sign_up.get('password').touched || sign_up.get('password').dirty),
+                'validFul' : sign_up.get('password').errors === null }"
+                autocomplete="off"/>
+                <label for='password'>Enter your password</label>
+              </div>
+              <label class="red-text text-darken-2 err" *ngIf="sign_up.get('password').errors && (sign_up.get('password').touched || sign_up.get('password').dirty)">
+                <b>Password have 1 special character and least 5 letters !</b>
+              </label>
+              <!-- NOTE: Field Confirm Password -->
+              <div class='input-field col m12'>
+                <i class="material-icons prefix">lock_outline</i>
+                <input type="password" id="password_confirm" formControlName="password_confirm" [ngClass]="{
+                  'validErr' : sign_up.get('password_confirm').errors && (sign_up.get('password_confirm').touched || sign_up.get('password_confirm').dirty),
+                  'validFul' : sign_up.get('password_confirm').errors === null }"
+                autocomplete="off"/>
+                <label for='password_confirm'>Enter your password confirm</label>
+              </div>
+              <!-- NOTE: Err Confirm Password -->
+              <div *ngIf="sign_up.errors && !sign_up.get('password_confirm').errors">
+                  <label *ngIf="sign_up.errors.confirmPassword" class="red-text text-darken-2 err">
+                      <b>Password confirm is not match !</b>
+                  </label>
+              </div>
+              <!-- NOTE: Btn Submit Sign Up -->
+              <button type="submit" [disabled]="!sign_up.valid" class='col m12 btn waves-effect waves-light indigo'>
+                Sign Up Account Member
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- NOTE: Loading -->
+      <div class="loading signup" *ngIf="loading">
+        <mz-progress
+          mz-progress
+          [backgroundClass]="'indigo accent-1'"
+          [progressClass]="'indigo accent-4'">
+        </mz-progress>
+      </div>
+
+      <!-- NOTE: Link Login -->
+      <div class="row">
+        <div class="col m12 center-align">
+          <a [routerLink]="['/auth/login']" class="btn waves-effect waves-light indigo"><i class="material-icons left">arrow_back</i> Login</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
