@@ -1,12 +1,14 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-
+import { AuthGuard } from "../auth/guard/auth.guard";
+//////////////////////
 import { MenuComponent } from "./index/menu.component";
 import { CreateComponent } from "./create/create.component";
 const routes : Routes = [
   {
     path: '',
-    component : MenuComponent
+    component : MenuComponent,
+    canActivate: [AuthGuard],
   }
 ];
 @NgModule({

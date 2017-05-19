@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { Title } from "@angular/platform-browser";
+import { Title, Meta } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BlogService } from "../shared/blog.service";
 import { Subscription } from "rxjs/Rx";
@@ -15,11 +15,17 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private titleService : Title,
+    private metaService : Meta,
     private blogService : BlogService,
     private route : ActivatedRoute,
     private router : Router,
   ) {
-
+    titleService.setTitle('Detail Blog');
+    metaService.addTags([
+      {name: 'author', content: 'Remy Nguyen'},
+      {name: 'keywords', content: 'Detail blogs'},
+      {name: 'description', content: 'This is detail blogs page !'},
+    ]);
   }
 
   ngOnInit() {
@@ -51,7 +57,7 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   editDetail(e){
     e.preventDefault();
-    this.router.navigate(['/blogs',this.slug,'edit']);
+    this.router.navigate(['dashboard/blogs',this.slug,'edit']);
   }
 
 }

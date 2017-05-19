@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Http } from "@angular/http";
-import { Router, Route, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad } from '@angular/router';
+import { CanActivate, CanActivateChild, CanLoad, Router, Route, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { AuthService } from "./auth.service";
-import { GlobalService } from "../../global-shared/global.service";
+import { AuthService } from "../shared/auth.service";
+
 @Injectable()
-export class GlobalAuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanActivateChild  {
 
   private isLoggedIn : Observable<boolean> ;
 
   constructor(
-    private http : Http,
     private router : Router,
     private authService : AuthService,
   ) {
@@ -21,6 +18,13 @@ export class GlobalAuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       return this.verifiedAddress();
+  }
+
+  canActivateChild(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean>|Promise<boolean>|boolean {
+      return this.canActivate(route,state);
   }
 
   verifiedAddress(){
@@ -39,7 +43,8 @@ export class GlobalAuthGuard implements CanActivate {
   }
 
   canLoad(route: Route): Observable<boolean>|Promise<boolean>|boolean {
-      console.log('canLoad verified address please login !');
+      // console.log('canLoad verified address please login !');
+      console.log(route);
       return this.verifiedAddress();
   }
 

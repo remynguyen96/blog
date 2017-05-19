@@ -1,5 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { Title } from "@angular/platform-browser";
+import { Title, Meta } from "@angular/platform-browser";
 import { routerTransition } from "../../global-shared/global.animation";
 @Component({
   selector: 'app-menu',
@@ -15,9 +15,15 @@ export class MenuComponent implements OnInit {
 
   constructor(
     private titleService : Title,
+    private metaService : Meta,
     private _ngZone: NgZone
   ) {
       titleService.setTitle('Menu Infomation');
+      metaService.addTags([
+        {name: 'author', content: 'Remy Nguyen'},
+        {name: 'keywords', content: 'Menu for blogs'},
+        {name: 'description', content: 'This is menu page !'},
+      ]);
    }
 
   ngOnInit() {

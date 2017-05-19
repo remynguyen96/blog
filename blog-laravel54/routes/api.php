@@ -74,6 +74,10 @@ Route::get('/get-all',[
     * Date created: 2017/05/16 16:05 PM
     * @return Users
     */
+  Route::get('blogs/news',[
+    'uses' => 'backend\BlogController@infiniteScroller',
+    'as' => 'blogs.infinite.scroller',
+  ]);
   Route::get('blogs/get-all',[
     'uses' => 'backend\BlogController@getAll',
     'as' => 'get.all.blogs',

@@ -337,6 +337,7 @@ class ComposerStaticInitf498e9632996d83f94e32b43e4f574df
         'CreateCategoriesTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_06_234055_create-categories-table.php',
         'CreateJobsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_06_234435_create_jobs_table.php',
         'CreateMenusTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_06_215753_create_menus_table.php',
+        'CreatePagesTable' => __DIR__ . '/../..' . '/database/migrations/2017_05_19_182208_create-pages-table.php',
         'CreateProfilesTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_25_225447_create-profiles-table.php',
         'CreateRolesTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_06_234652_create-roles-table.php',
         'CreateSettingsTable' => __DIR__ . '/../..' . '/database/migrations/2017_04_06_234130_create-settings-table.php',

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title as TitleCategory } from "@angular/platform-browser";
+import { Title as TitleCategory, Meta } from "@angular/platform-browser";
 import { routerTransition } from "../../global-shared/global.animation";
 import { CategoryService } from "../shared/category.service";
 import { Observable } from "rxjs/Rx";
@@ -26,9 +26,15 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
   constructor(
     private titleService : TitleCategory,
+    private metaService : Meta,
     private _categoryService : CategoryService
   ) {
       titleService.setTitle('Category Infomation');
+      metaService.addTags([
+        {name: 'author', content: 'Remy Nguyen'},
+        {name: 'keywords', content: 'Category infomation for blogs'},
+        {name: 'description', content: 'This is categories page !'},
+      ]);
   }
 
   ngOnInit() {

@@ -1,11 +1,13 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-
+import { AuthGuard } from "../auth/guard/auth.guard";
+//////////////////////
 import { SettingsComponent } from './index/settings.component';
 const routes : Routes = [
     {
         path : '',
-        component : SettingsComponent
+        component : SettingsComponent,
+        canActivate: [AuthGuard],
     },
 ];
 @NgModule({

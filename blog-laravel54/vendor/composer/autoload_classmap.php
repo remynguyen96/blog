@@ -14,6 +14,7 @@ return array(
     'CreateCategoriesTable' => $baseDir . '/database/migrations/2017_04_06_234055_create-categories-table.php',
     'CreateJobsTable' => $baseDir . '/database/migrations/2017_04_06_234435_create_jobs_table.php',
     'CreateMenusTable' => $baseDir . '/database/migrations/2017_04_06_215753_create_menus_table.php',
+    'CreatePagesTable' => $baseDir . '/database/migrations/2017_05_19_182208_create-pages-table.php',
     'CreateProfilesTable' => $baseDir . '/database/migrations/2017_04_25_225447_create-profiles-table.php',
     'CreateRolesTable' => $baseDir . '/database/migrations/2017_04_06_234652_create-roles-table.php',
     'CreateSettingsTable' => $baseDir . '/database/migrations/2017_04_06_234130_create-settings-table.php',

@@ -1,10 +1,13 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { GlobalAuthGuard } from "./auth/shared/auth.guard";
-import { GlobalDeactiveGuard } from "./auth/shared/auth.deactiveGuard";
+import { AuthGuard } from "./auth/guard/auth.guard";
+import { DeactiveAuthGuard } from "./auth/guard/deactiveAuth.guard";
 ////////////////////
 import { NotFoundComponent } from "./not-found/not-found.component";
 import { EventsComponent } from './events/events.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PagesComponent } from './pages/pages.component';
+
 const routes : Routes = [
     {
         path: '',
@@ -16,41 +19,56 @@ const routes : Routes = [
         loadChildren: 'app/auth/auth.module#AuthModule',
     },
     {
-        path: 'user',
-        loadChildren: 'app/user/user.module#UserModule',
-        canActivate: [GlobalAuthGuard],
-        canLoad: [GlobalAuthGuard],
-    },
-    {
-        path: 'settings',
-        loadChildren : 'app/settings/settings.module#SettingsModule',
-        canActivate: [GlobalAuthGuard],
-        // canDeactivate: [GlobalDeactiveGuard],
-        canLoad: [GlobalAuthGuard],
-    },
-    {
-        path: 'blogs',
-        loadChildren : 'app/blog/blog.module#BlogModule',
-        canActivate: [GlobalAuthGuard],
-        canLoad: [GlobalAuthGuard],
-    },
-    {
-        path: 'categories',
-        loadChildren : 'app/categories/categories.module#CategoriesModule',
-        canActivate: [GlobalAuthGuard],
-        canLoad: [GlobalAuthGuard],
-    },
-    {
-        path: 'menu',
-        loadChildren : 'app/menu/menu.module#MenuModule',
-        canActivate: [GlobalAuthGuard],
-        canLoad: [GlobalAuthGuard],
-    },
-    {
-        path: 'events',
-        component: EventsComponent,
-        canActivate: [GlobalAuthGuard],
-        canLoad: [GlobalAuthGuard],
+        path: 'dashboard',
+        component: DashboardComponent,
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        canLoad: [AuthGuard], // not working
+        canDeactivate: [DeactiveAuthGuard],
+        children:[
+          {
+              path: 'user',
+              loadChildren: 'app/user/user.module#UserModule',
+              canLoad: [AuthGuard],
+              canDeactivate: [DeactiveAuthGuard],
+          },
+          {
+              path: 'settings',
+              loadChildren : 'app/settings/settings.module#SettingsModule',
+              canLoad: [AuthGuard],
+              canDeactivate: [DeactiveAuthGuard],
+          },
+          {
+              path: 'blogs',
+              loadChildren : 'app/blog/blog.module#BlogModule',
+              canLoad: [AuthGuard],
+              canDeactivate: [DeactiveAuthGuard],
+          },
+          {
+              path: 'categories',
+              loadChildren : 'app/categories/categories.module#CategoriesModule',
+              canLoad: [AuthGuard],
+              canDeactivate: [DeactiveAuthGuard],
+          },
+          {
+              path: 'menu',
+              loadChildren : 'app/menu/menu.module#MenuModule',
+              canLoad: [AuthGuard],
+              canDeactivate: [DeactiveAuthGuard],
+          },
+          {
+              path: 'events',
+              component: EventsComponent,
+              canLoad: [AuthGuard], // not working
+              canDeactivate: [DeactiveAuthGuard],
+          },
+          {
+              path: 'pages',
+              component: PagesComponent,
+              canLoad: [AuthGuard], // not working
+              canDeactivate: [DeactiveAuthGuard],
+          },
+        ]
     },
     {
         path: '**',
@@ -58,9 +76,6 @@ const routes : Routes = [
     },
 ];
 
-// export const AppRouting : ModuleWithProviders = RouterModule.forRoot(routes,{
-//   useHash: false
-// });
 @NgModule({
     imports: [RouterModule.forRoot(routes, {useHash: false})],
     exports: [RouterModule]

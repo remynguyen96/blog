@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Title } from "@angular/platform-browser";
 ////////////////////
 import { MenuRoutingModule } from "./menu.routing";
 import { MenuDirective } from './shared/menu.directive';
@@ -20,6 +19,6 @@ import { CreateComponent } from './create/create.component';
     MenuComponent,
     CreateComponent,
   ],
-  providers: [Title],
+  providers: [],
 })
 export class MenuModule { }

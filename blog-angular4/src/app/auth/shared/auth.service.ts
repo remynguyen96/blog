@@ -34,7 +34,7 @@ export class AuthService extends GlobalService {
                         this.MiddlewareMenu.emit(true);
                         this.isLoggedIn.next(true);
                         localStorage.setItem('token',tokenData.token);
-                        this.router.navigate(['/blogs']);
+                        this.router.navigate(['/dashboard/blogs']);
                     }
                 );
   }

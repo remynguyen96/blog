@@ -9,35 +9,35 @@ use App\Repositories\Blog\BlogInterface;
 class BlogController extends Controller
 {
     protected $blogService;
-    public function __construct(BlogInterface $BlogInterface){
+
+    function __construct(BlogInterface $BlogInterface){
       $this->blogService = $BlogInterface;
     }
 
-
-    public function getAll(){
+    function getAll(){
       // $blog = Blog::orderBy('id','desc')->limit(2)->with('category')->with('user')->get();
       $data = $this->blogService->getAll();
       return response()->json($data,200);
     }
 
-    public function getItem($slug){
+    function getItem($slug){
       $data = $this->blogService->getDetail('slug',$slug);
       return response()->json($data,200);
     }
 
-    public function createItem(){
+    function createItem(){
 
     }
 
-    public function editItem($slug){
+    function editItem($slug){
 
     }
 
-    public function removeItem($slug){
+    function removeItem($slug){
 
     }
 
-    public function getAllNext(){
+    function getAllNext(){
       $count = request()->totalBlogCurrent;
       $blog = Blog::orderBy('id','desc')->offset($count)->limit(2)->with('category')->with('user')->get();
       $totalBlog = Blog::all()->count();
@@ -46,5 +46,11 @@ class BlogController extends Controller
       }else{
         return response()->json(['next' => $blog],200);
       }
+    }
+
+
+    function infiniteScroller(){
+      $blog = Blog::orderBy('id','desc')->paginate(10);
+      return response()->json($blog,200);
     }
 }

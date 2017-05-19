@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Title } from "@angular/platform-browser";
 //////////////////
 import { CategoryRoutingModule } from "./categories.routing";
 import { CategoryPipe } from './shared/category.pipe';
@@ -26,6 +25,6 @@ import { EditComponent } from './edit/edit.component';
     CreateComponent,
     EditComponent,
   ],
-  providers:[Title,CategoryService],
+  providers:[CategoryService],
 })
 export class CategoriesModule { }

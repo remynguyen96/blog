@@ -196,19 +196,19 @@ class BlogSeeder extends Seeder
         $BlogRoot8->makeRoot();
         $BlogRoot8->category()->attach($category_recommand);
         $BlogRoot8->category()->attach($category_homepage);
-        // for ($i = 9; $i <= 50 ; $i++) {
-        //   $BlogRoot9 = Blog::create([
-        //     'images' => 'background1.jpg',
-        //     'library_images' => json_encode($arrImage),
-        //     'title' => 'Post '.$i,
-        //     'slug' => 'post-'.$i,
-        //     'description' => $faker->realText($maxNbChars = 1500, $indexSize = 5),
-        //     'excerpt' => $faker->text(200),
-        //     'user_id' => App\User::all()->random()->id,
-        //   ]);
-        //   $BlogRoot9->makeRoot();
-        //   $BlogRoot9->category()->attach($category_recommand);
-        //   $BlogRoot9->category()->attach($category_homepage);
-        // }
+        for ($i = 9; $i <= 50 ; $i++) {
+          $BlogRoot9 = Blog::create([
+            'images' => 'background1.jpg',
+            'library_images' => json_encode($arrImage),
+            'title' => 'Post '.$i,
+            'slug' => 'post-'.$i,
+            'description' => $faker->realText($maxNbChars = 1500, $indexSize = 5),
+            'excerpt' => $faker->text(200),
+            'user_id' => App\User::all()->random()->id,
+          ]);
+          $BlogRoot9->makeRoot();
+          $BlogRoot9->category()->attach($category_recommand);
+          $BlogRoot9->category()->attach($category_homepage);
+        }
     }
 }

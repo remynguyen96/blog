@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from "@angular/platform-browser";
+import { Title , Meta } from "@angular/platform-browser";
 import { CategoryService } from "../shared/category.service";
 @Component({
   selector: 'app-create',
@@ -11,9 +11,15 @@ export class CreateComponent implements OnInit {
 
   constructor(
     private titleService : Title,
+    private metaService : Meta,
     private _categoryService : CategoryService
   ) {
     titleService.setTitle('Create New Category For Blog');
+    metaService.addTags([
+      {name: 'author', content: 'Remy Nguyen'},
+      {name: 'keywords', content: 'Create new category for blogs'},
+      {name: 'description', content: 'This is create new category page !'},
+    ]);
   }
 
   ngOnInit() {

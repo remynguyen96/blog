@@ -1,26 +1,25 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import * as io from 'socket.io-client';
-import { Observable } from "rxjs/Observable";
-import { ChatService } from "./events.service";
-@Injectable()
+import { Component, OnInit } from '@angular/core';
+// import * as io from 'socket.io-client';
+// import { Observable } from "rxjs/Observable";
+// import { ChatService } from "./events.service";
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
-  providers: [ChatService]
+  // providers: [ChatService]
 })
 export class EventsComponent implements OnInit {
   // socket = null;
   // socket = io('http://localhost:4444');
-  test : any = '';
+  // test : any = '';
 
   infoMessage = {
     username : '',
     message : '',
   };
 
-  constructor(private chatService : ChatService) {
-  }
+  // constructor(private chatService : ChatService) {
+  // }
 
   ngOnInit() {
     // this.socket = io('http://localhost:4444');
@@ -35,16 +34,16 @@ export class EventsComponent implements OnInit {
     // });
   }
 
-  sendMessage(){
-    let data = {
-      username: this.infoMessage.username,
-      message: this.infoMessage.message,
-    };
-    // this.socket.emit('postMessage',data);
-    this.infoMessage = {
-      username : '',
-      message : '',
-    };
-  }
+  // sendMessage(){
+  //   let data = {
+  //     username: this.infoMessage.username,
+  //     message: this.infoMessage.message,
+  //   };
+  //   // this.socket.emit('postMessage',data);
+  //   this.infoMessage = {
+  //     username : '',
+  //     message : '',
+  //   };
+  // }
 
 }

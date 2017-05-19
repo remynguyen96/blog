@@ -12,15 +12,15 @@ const routes : Routes = [
   },
   {
     path : 'login',
-    component : LoginComponent
+    component : LoginComponent,
   },
   {
     path : 'sign-up',
-    component : SignUpComponent
+    component : SignUpComponent,
   },
   {
     path : 'reset-password',
-    component : ResetPasswordComponent
+    component : ResetPasswordComponent,
   },
 ];
 @NgModule({
