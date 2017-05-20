@@ -32,7 +32,7 @@ Before running the tests make sure you are serving the app via `ng serve`.
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-## About Laravel v5.4
+## About Laravel
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
@@ -66,6 +66,5 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
-## Author
-
-[Remy Nguyen](https://www.facebook.com/remynguyen1996).
+### Author
+* [Remy Nguyen](https://www.facebook.com/remynguyen1996)
