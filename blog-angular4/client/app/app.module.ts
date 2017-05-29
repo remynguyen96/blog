@@ -42,12 +42,3 @@ export class AppModule { }
 // npm install zone.js@0.8.5 --save
 // npm install --save @angular/platform-server
 // npm install --save angularfire2
-// npm install --save body-parser
-// npm install --save mongoose
-// npm install --save socket.io-client
-// npm install --save socketio
-// npm install --save express
-// npm install --save dev
-// npm install --save firebase
-// npm install -g concurrently
-// npm install -g nodemon

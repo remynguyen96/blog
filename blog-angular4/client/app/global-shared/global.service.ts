@@ -40,7 +40,7 @@ export class GlobalService {
                       .catch(this.handleError);
   }
 
-  getDetail(slug) : Observable<any> {
+  getDetail(slug: number | string) : Observable<any> {
     return this._http.post(`${this.getURL()}/get-item/${slug}`,this.options)
                       .map((response : Response) => response.json() )
                       .catch(this.handleError);
@@ -52,13 +52,13 @@ export class GlobalService {
                       .catch(this.handleError);
   }
 
-  edit(slug,data : any) : Observable<any> {
+  edit(slug: number | string,data : any) : Observable<any> {
     return this._http.put(`${this.getURL()}/edit-item/${slug}`,data,this.options)
                       .map((response : Response) => response.json() )
                       .catch(this.handleError);
   }
 
-  remove(slug) : Observable<Response> {
+  remove(slug: number | string) : Observable<Response> {
     return this._http.delete(`${this.getURL()}/remove-item/${slug}`,this.options)
                       .map((response : Response) => response.json() )
                       .catch(this.handleError);

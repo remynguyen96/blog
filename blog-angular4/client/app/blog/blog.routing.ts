@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AuthGuard } from "../auth/guard/auth.guard";
+import { BlogResolve } from "./shared/blog.resolve";
 //////////////////////
 import { BlogComponent } from "./index/blog.component";
 import { DetailComponent } from "./detail/detail.component";
@@ -18,11 +19,16 @@ const routes : Routes = [
   {
     path: ':slug',
     component : DetailComponent,
-    data : {},
+    resolve : {
+      detailBlog : BlogResolve
+    },
   },
   {
     path : ':slug/edit',
-    component : EditComponent
+    component : EditComponent,
+    resolve : {
+      detailBlog : BlogResolve
+    },
   },
 
 ];

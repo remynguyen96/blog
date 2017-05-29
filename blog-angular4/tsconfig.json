@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "baseUrl": "client",
-    "sourceMap": false,
+    "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
@@ -16,9 +16,5 @@
       "es2016",
       "dom"
     ]
-  },
-    "angularCompilerOptions": {
-     "genDir": "./dist/ngfactory",
-     "entryModule": "./src/app/app.module#AppModule"
   }
 }

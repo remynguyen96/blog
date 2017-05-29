@@ -1,7 +1,15 @@
 :host{
   .listBlogs{
-    border: none;
+    th{
+      font-weight: 400;
+    }
   }
+  table.highlight > tbody > tr:hover{
+    background: #607d8b;
+    cursor: pointer;
+  }
+
+
 
   #infinite-scroller {
   height: 500px;

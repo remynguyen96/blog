@@ -90,17 +90,13 @@ Route::get('/get-all',[
     * Date created: 2017/05/16 16:05 PM
     * @return Users
     */
-  Route::get('/blogs/news',[
+  Route::get('/blogs',[
     'uses' => 'backend\BlogController@infiniteScroller',
     'as' => 'blogs.infinite.scroller',
   ]);
   Route::get('/blogs/get-all',[
     'uses' => 'backend\BlogController@getAll',
     'as' => 'get.all.blogs',
-  ]);
-  Route::post('/blogs/get-all-next',[
-    'uses' => 'backend\BlogController@getAllNext',
-    'as' => 'get.all.blogs.next',
   ]);
   Route::post('/blogs/get-item/{slug}',[
     'uses' => 'backend\BlogController@getItem',
@@ -125,6 +121,10 @@ Route::get('/get-all',[
     * Date created: 2017/05/16 16:05 PM
     * @return Category
     */
+  Route::get('/categories',[
+    'uses' => 'backend\CategoryController@categoryPagination',
+    'as' => 'categories.pagination',
+  ]);
   Route::get('/categories/get-all',[
     'uses' => 'backend\CategoryController@getAll',
     'as' => 'get.all.categories',

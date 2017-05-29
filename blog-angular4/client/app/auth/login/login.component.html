@@ -16,13 +16,13 @@
               <!-- NOTE: Field Email -->
               <div class='input-field col m12'>
                 <input type='text' id='email' formControlName="email" [ngClass]="{
-                  'validErr' : infomationLogin.get('email').errors && (infomationLogin.get('email').touched || infomationLogin.get('email').dirty), 'validFul' : infomationLogin.get('email').errors === null }" autocomplete="off" />
+                  'validErr' : isValid('email'), 'validFul' : infomationLogin.get('email').errors === null }" autocomplete="off" />
                 <label for='email'>Enter your email</label>
               </div>
               <!-- NOTE: Field Password -->
               <div class='input-field col m12'>
-                <input type='password' id='password' formControlName="password" [ngClass]="{'validErr' : infomationLogin.get('password').errors && (infomationLogin.get('password').touched || infomationLogin.get('password').dirty),
-                'validFul' : infomationLogin.get('email').errors === null }"
+                <input type='password' id='password' formControlName="password" [ngClass]="{'validErr' : isValid('password'),
+                'validFul' : infomationLogin.get('password').errors === null }"
                 autocomplete="off"/>
                 <label for='password'>Enter your password</label>
               </div>

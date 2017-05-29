@@ -42,12 +42,18 @@ const routes : Routes = [
               loadChildren : 'app/blog/blog.module#BlogModule',
               canLoad: [AuthGuard],
               canDeactivate: [DeactiveAuthGuard],
+
           },
           {
               path: 'categories',
               loadChildren : 'app/categories/categories.module#CategoriesModule',
               canLoad: [AuthGuard],
               canDeactivate: [DeactiveAuthGuard],
+              data: {
+                animation: {
+                  value : 'category'
+                }
+              },
           },
           {
               path: 'menu',
@@ -60,12 +66,22 @@ const routes : Routes = [
               component: EventsComponent,
               canLoad: [AuthGuard], // not working
               canDeactivate: [DeactiveAuthGuard],
+              data: {
+                animation: {
+                  value : 'events'
+                }
+              },
           },
           {
               path: 'pages',
               loadChildren : 'app/pages/pages.module#PagesModule',
               canLoad: [AuthGuard],
               canDeactivate: [DeactiveAuthGuard],
+              data: {
+                animation: {
+                  value : 'pages'
+                }
+              },
           },
         ]
     },

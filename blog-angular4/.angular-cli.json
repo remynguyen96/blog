@@ -6,7 +6,7 @@
   "apps": [
     {
       "root": "client",
-      "outDir": "dist/public",
+      "outDir": "dist",
       "assets": [
         "assets",
         "assets/favicon.ico"
@@ -56,8 +56,7 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {
-    },
+    "component": {},
     "spec": {
       "component": false,
       "directive": false,

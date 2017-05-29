@@ -82,6 +82,10 @@ export class SignUpComponent implements OnInit {
     });
   }
 
+  isValid(control){
+    return this.sign_up.controls[control].invalid && (this.sign_up.controls[control].touched || this.sign_up.controls[control].dirty );
+  }
+
   signUpBlogs(){
     this.loading = true;
     this.sign_up.value.password = this.authService.encryptCode(this.sign_up.get('password').value);

@@ -1,33 +1,32 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, HostBinding, AfterContentChecked } from '@angular/core';
 import { Title as TitleCategory, Meta } from "@angular/platform-browser";
-import { routerTransition } from "../../global-shared/global.animation";
+import { routerAnimation } from "../../global-shared/global.animation";
 import { CategoryService } from "../shared/category.service";
 import { Observable } from "rxjs/Observable";
-import { AnonymousSubscription } from "rxjs/Subscription";
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss'],
-  animations : [routerTransition()],
-  host:{'[@routerTransition]' : ''}
+  animations: [routerAnimation],
 })
-export class CategoriesComponent implements OnInit, OnDestroy {
-  ticketCount:number = 0;
+export class CategoriesComponent implements OnInit, AfterContentChecked {
 
-  private posts: any = [];
+  @HostBinding('@routerTransition')
+  @HostBinding('style.display')   display = 'block';
 
-  private post : any = {
-    title : ''
-  };
+  private allCategory : any[];
+  private totalItems : number;
+  private currentPage : number;
+  private totalPages : number;
+  private pager : any = {};
+  // private pager : any[];
 
-  private timerSubscription: AnonymousSubscription;
 
-  private postsSubscription: AnonymousSubscription;
 
   constructor(
     private titleService : TitleCategory,
     private metaService : Meta,
-    private _categoryService : CategoryService
+    private categoryService : CategoryService
   ) {
       titleService.setTitle('Category Infomation');
       metaService.addTags([
@@ -38,53 +37,79 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.refreshData();
-
-    // this._categoryService.totalTicketCount.subscribe(totalTicketCount => {
-    //     this.ticketCount = totalTicketCount
-    // });
+    this.queryCategories();
   }
 
-  ngOnDestroy() {
-      if (this.postsSubscription) {
-          this.postsSubscription.unsubscribe();
-      }
-      if (this.timerSubscription) {
-          this.timerSubscription.unsubscribe();
-      }
+  ngAfterContentChecked(){
+    this.pager =  this.categoryService.getPager(this.totalPages,this.currentPage);
   }
 
-  // bookShow = () => {
-  //      let ticketCount = this.ticketCount - 1;
-  //
-  //      this._categoryService.totalTicketCount.next(ticketCount);
-  //  }
-  ////////////////////////////////////////////////////
+  queryCategories(page : number = 1){
+    this.categoryService.getListBlogs(page).subscribe(
+      category => {
+        this.totalItems = category.total;
+        this.currentPage = category.current_page;
+        this.totalPages = category.last_page;
+        this.allCategory = category.data;
 
-   public save(): void {
-       this._categoryService.save(this.post)
-           .subscribe(post => {
-               this.posts.unshift(post);
-           });
-      this.post.title = '';
-   }
+      },
+      error => {
+        Materialize.toast(`<span>
+          There is a problem, please try again !
+        </span>`, 3500,'notiError');
+        console.log("get data blogs error :"+error)
+      },
+    )
+  }
 
-   public deletePost(postToDelete: any, event: any): void {
-       event.stopPropagation();
-       this._categoryService.delete(postToDelete).subscribe(() => {
-           this.posts = this.posts.filter((post: any) => post.id !== postToDelete.id);
-       });
-   }
+  pageContinue(e,page : number){
+    e.preventDefault();
+    this.queryCategories(page);
+  }
+
+  pageFirst(e){
+    e.preventDefault();
+    if(this.currentPage <= 1){
+      return false;
+    }else{
+        this.queryCategories(1);
+    }
+  }
+
+  pagePrevious(e){
+    e.preventDefault();
+    let pagePrevious = this.currentPage  - 1;
+    if(pagePrevious < 1){
+      return false;
+    }else{
+        this.queryCategories(pagePrevious);
+    }
+  }
+
+  pageNext(e){
+    e.preventDefault();
+    let pageNext = this.currentPage  + 1;
+    if(pageNext > this.totalPages){
+      return false;
+    }else{
+      this.queryCategories(pageNext);
+    }
+  }
+
+  pageLast(e){
+    e.preventDefault();
+    if(this.currentPage >= this.totalPages){
+      return false;
+    }else{
+        this.queryCategories(this.totalPages);
+    }
+  }
 
 
-   private refreshData(): void {
-       this.postsSubscription = this._categoryService.getAll().subscribe(posts => {
-           this.posts = posts;
-           this.timerSubscription = Observable.timer(2000)
-                                              .first()
-                                              .subscribe(() => this.refreshData());
-       });
-   }
+
+
+
+
 
 
 }

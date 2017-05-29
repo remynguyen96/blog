@@ -1,12 +1,12 @@
 import { Component, OnInit, NgZone, ElementRef } from '@angular/core';
 import { Title, Meta } from "@angular/platform-browser";
-import { routerTransition } from "../../global-shared/global.animation";
+// import { routerAnimation } from "../../global-shared/global.animation";
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  animations: [routerTransition()],
-  host:{ '[@routerTransition]' : ''},
+  // animations: [routerTransition()],
+  // host:{ '[@routerTransition]' : ''},
 })
 export class MenuComponent implements OnInit {
 

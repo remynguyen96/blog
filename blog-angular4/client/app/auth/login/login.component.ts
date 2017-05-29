@@ -53,6 +53,10 @@ export class LoginComponent implements OnInit, AfterViewChecked {
     });
   }
 
+  isValid(control){
+    return this.infomationLogin.controls[control].invalid && (this.infomationLogin.controls[control].touched || this.infomationLogin.controls[control].dirty );
+  }
+
   loginBlogs(){
       // this.infomationLogin.value.password = this.authService.encryptCode(this.infomationLogin.get('password').value);
       this.loading = true;

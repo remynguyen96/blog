@@ -1,16 +1,16 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { routerTransition } from "../../global-shared/global.animation";
 import { Title, Meta } from "@angular/platform-browser"
 import { FormGroup, FormControlName, Validators, FormBuilder } from "@angular/forms";
 import { Router } from "@angular/router";
 import { PagesService } from "../shared/pages.service";
+// import { routerAnimation } from "../../global-shared/global.animation";
 import 'rxjs/Rx';
 @Component({
   selector: 'app-pages',
   templateUrl: './pages.component.html',
   styleUrls: ['./pages.component.scss'],
-  animations: [routerTransition()],
-  host : { '[@routerTransition]' : '' },
+  // animations: [routerTransition()],
+  // host : { '[@routerTransition]' : '' },
 })
 export class PagesComponent implements OnInit {
 

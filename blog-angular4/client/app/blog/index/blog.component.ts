@@ -1,18 +1,25 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { routerTransition } from "../../global-shared/global.animation";
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2, HostBinding } from '@angular/core';
+import { routerAnimation } from "../../global-shared/global.animation";
 import { Title, Meta } from "@angular/platform-browser";
 import { BlogService } from "../shared/blog.service";
 import { Router } from "@angular/router";
-import 'rxjs/Rx';
+import {trigger, animate, style, transition, animateChild, group, query, stagger} from '@angular/animations';
+declare var $:any;
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss'],
-  animations: [routerTransition()],
-  host : { '[@routerTransition]' : '' },
-
+  animations: [
+    routerAnimation,
+  ]
 })
 export class BlogComponent implements OnInit, AfterViewInit {
+
+  @HostBinding('@routerTransition')
+  @HostBinding('style.display')   display = 'block';
+
+  @ViewChild('upload') importFile : ElementRef;
+  @ViewChild('download') exportFile : ElementRef;
 
   private dataBlog : Array<Object>;
 
@@ -27,6 +34,11 @@ export class BlogComponent implements OnInit, AfterViewInit {
   private sortBlogs : string;
 
   private filterBlogs : string;
+
+  private keyBlogs : Array<Object> = [
+    'id', 'title', 'slug','excerpt','status', 'user_id', 'created_at', 'updated_at'
+  ];
+
 
   private sort : Array<Object> = [
     {name : 'Descending', images : '../../../assets/images/radu-emanuel-15870.jpg' },
@@ -44,6 +56,7 @@ export class BlogComponent implements OnInit, AfterViewInit {
     private metaService : Meta,
     private router : Router,
     private blogService : BlogService,
+    private renderer : Renderer2,
   ) {
     titleService.setTitle('Blog Infomation');
     metaService.addTags([
@@ -62,27 +75,28 @@ export class BlogComponent implements OnInit, AfterViewInit {
            error => {
              Materialize.toast(`<span>
                There is a problem, please try again !
-             </span>`, 400021321,'notiError');
+             </span>`, 3500,'notiError');
              console.log("get data blogs error :"+error)
            },
            ()=> this.listBlogs = this.dataBlog );
   }
 
   ngAfterViewInit(){
-
+    this.renderer.setStyle(this.importFile.nativeElement,'display','none');
+    this.renderer.setStyle(this.exportFile.nativeElement,'display','none');
   }
 
   sortType() {
     if(this.sortBlogs === 'Descending'){
       this.dataBlog.sort((a: any, b: any) => {
-        if(a.title > b.title) return -1;
-        else if(a.title < b.title) return 1;
+        if(a.id > b.id) return -1;
+        else if(a.id < b.id) return 1;
         else return 0;
       });
     }else{
       this.dataBlog.sort((a: any, b: any) => {
-        if(a.title > b.title) return 1;
-        else if(a.title < b.title) return -1;
+        if(a.id > b.id) return 1;
+        else if(a.id < b.id) return -1;
         else return 0;
       });
     }
@@ -141,6 +155,41 @@ export class BlogComponent implements OnInit, AfterViewInit {
     //  this.router.navigate(['/component2'], { queryParams: { page: pageNum } });
   }
 
+  importExcel(){
+    this.importFile.nativeElement.click();
+  }
+
+  handingImport(){
+    let fileUpload = this.importFile.nativeElement;
+    if(fileUpload.files && fileUpload.files[0]){
+      return new Promise((resolve, reject) => {
+          let formData = new FormData(),
+              xhr = new XMLHttpRequest();
+          formData.append('fileExcel', fileUpload, fileUpload.name);
+          xhr.onreadystatechange = () => {
+              if (xhr.readyState === 4) {
+                  if (xhr.status === 200) {
+                      resolve(JSON.parse(xhr.response));
+                      Materialize.toast('Import file successful !',2500,'notiSuccess rounded');
+                  } else {
+                      reject(xhr.response);
+                      Materialize.toast('There is a problem, please try again !',3000,'notiError');
+                  }
+              }
+          }
+          xhr.open('POST', `http://localhost:4200/dashboard/blogs`, true);
+          xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('auth_token'));
+          xhr.send(formData);
+      });
+    }
+  }
+
+  exportExcel(){
+    let href = this.renderer.setAttribute(this.exportFile.nativeElement,'href','http://blog.app/public/images/background2.jpg');
+    // this.exportFile.nativeElement.click();
+    // let token = `token="${localStorage.getItem('auth_token')}"`;
+    // return `${self.appConfig.baseApiUrl}/${url}?${token}`;
+  }
 
   scrollMore(){
     window.onscroll = e => {

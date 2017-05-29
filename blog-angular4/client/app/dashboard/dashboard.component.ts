@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Title, Meta } from "@angular/platform-browser";
-import { trigger, state, style, animate, transition, keyframes, AnimationEvent } from '@angular/animations';
-// import { routerTransition } from "../global-shared/global.animation";
+import { Observable } from "rxjs/Observable";
+import { Router } from "@angular/router";
+import {  AuthService } from "../auth/shared/auth.service";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  // animations: [routerTransition()],
 })
 export class DashboardComponent implements OnInit {
 
@@ -51,6 +51,5 @@ export class DashboardComponent implements OnInit {
     // localStorage.removeItem('token');
     localStorage.clear();
   }
-
 
 }

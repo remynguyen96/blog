@@ -46,23 +46,23 @@ export class ResetPasswordComponent implements OnInit {
 
   signUpBlogs(data){
     this.loading = true;
-    this.authService.signUp(this.resetPassword.value).subscribe(
-        infomation => {
-          this.loading = false;
-          console.log(infomation);
-          Materialize.toast(`<span>
-            Reset password successful, please check email !
-          </span>`, 3000,'rounded notiSuccess');
-          this.router.navigate(['/auth/login']);
-        },
-        errorLogin => {
-          this.loading = false;
-          Materialize.toast(`<span>
-            There is a problem, please try again !
-          </span>`, 4000,'notiError');
-          console.log(`error : ${errorLogin}`);
-        }
-      );
+    // this.authService.signUp(this.resetPassword.value).subscribe(
+    //     infomation => {
+    //       this.loading = false;
+    //       console.log(infomation);
+    //       Materialize.toast(`<span>
+    //         Reset password successful, please check email !
+    //       </span>`, 3000,'rounded notiSuccess');
+    //       this.router.navigate(['/auth/login']);
+    //     },
+    //     errorLogin => {
+    //       this.loading = false;
+    //       Materialize.toast(`<span>
+    //         There is a problem, please try again !
+    //       </span>`, 4000,'notiError');
+    //       console.log(`error : ${errorLogin}`);
+    //     }
+    //   );
   }
 
 }

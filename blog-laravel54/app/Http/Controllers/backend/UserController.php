@@ -10,6 +10,7 @@ use Session;
 use Mail;
 use App\Mail\ConfirmRegister;
 use JWTAuth;
+use Tymon\JWTAuthExceptions\JWTException;
 use App\User;
 use App\Repositories\User\UserInterface;
 

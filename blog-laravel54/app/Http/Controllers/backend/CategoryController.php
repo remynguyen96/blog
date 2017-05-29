@@ -10,19 +10,19 @@ class CategoryController extends Controller
 {
   private $_category;
 
-  public function __construct(CategoryInterface $categoryInterface){
+  function __construct(CategoryInterface $categoryInterface){
     $this->_category = $categoryInterface;
   }
 
-  public function getAll(){
+  function getAll(){
       return $this->_category->getAll();
   }
 
-  public function getItem($slug){
+  function getItem($slug){
 
   }
 
-  public function createItem(){
+  function createItem(){
     $category = \App\Category::create([
       'name' => request()->title,
       'slug' => request()->title,
@@ -33,13 +33,18 @@ class CategoryController extends Controller
     return response()->json(['success' => 'good job !'],200);
   }
 
-  public function editItem($slug){
+  function editItem($slug){
 
   }
 
-  public function removeItem($slug){
+  function removeItem($slug){
     $delete = \App\Category::where('id',$slug)->first()->delete();
     return response()->json(['success' => 'good job !'],200);
+  }
+
+  function categoryPagination(){
+    $category = \App\Category::orderBy('id','desc')->paginate(10);
+    return response()->json($category,200);
   }
 
 }

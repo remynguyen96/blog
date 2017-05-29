@@ -6,7 +6,9 @@ import { GlobalService } from "../../global-shared/global.service";
 import { Router } from "@angular/router";
 @Injectable()
 export class CategoryService extends GlobalService{
-  protected database : string = 'categories';
+
+  public urlImage : string = `${this.URLservice}/public/images`;
+  protected database : string= 'categories';
 
   constructor(
     private http : Http,
@@ -17,29 +19,38 @@ export class CategoryService extends GlobalService{
 
   totalTicketCount:BehaviorSubject<number> = new BehaviorSubject<number>(10);
 
-  public getAll(): Observable<any> {
-      let headers = new Headers({
-          "Content-Type": "application/json",
-      });
-      return this.http
-          .get(`http://blog.app/api/categories/get-all`,{headers})
-          .map((res:Response) => res.json())
-          .catch(this.handleError);
+  getListBlogs(page : number) : Observable<any> {
+     return this.http.get(`${this.getURL()}?page=${page}`,this.options)
+                      .map((response : Response) => response.json())
+                      .catch(this.handleError);
   }
 
-  public save(post: any): Observable<any> {
-      let headers = new Headers({
-          "Content-Type": "application/json",
-      });
-      return this.http.post(`http://blog.app/api/categories/create-item`, post, {headers})
-                      .map((res:Response) => res.json());
+  getPager(totalPages:number,currentPage: number = 1){
+    let startPage : number,endPage : number;
+    if(totalPages <= 10){
+      startPage = 1;
+      endPage = totalPages;
+    }else{
+      if(currentPage <= 6){
+        startPage = 1;
+        endPage = 10;
+      }else if(currentPage + 4 >= totalPages){
+        startPage = totalPages - 9;
+        endPage = totalPages;
+      }else{
+        startPage = currentPage - 5;
+        endPage = currentPage + 4;
+      }
+    }
+    let pages = this.range(startPage, (endPage+1)-startPage);
+    return pages;
   }
 
-  public delete(post: any): Observable<Response> {
-      let headers = new Headers();
-      headers.append("Content-Type", "application/json");
-      return this.http.delete(`http://blog.app/api/categories/remove-item/${post.id}`, {headers})
-                      .map((res:Response) => res.json());
+  public range(start, count) {
+    return Array.apply(0, Array(count))
+      .map((element, index) =>  {
+        return index + start;
+    });
   }
 
 

@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from "@angular/platform-browser";
-import { routerTransition } from "../../global-shared/global.animation";
 import { Router,ActivatedRoute } from "@angular/router";
-import { Subscription } from "rxjs/Rx";
+import { Subscription } from "rxjs/Subscription";
+// import { routerAnimation } from "../../global-shared/global.animation";
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
-  animations: [routerTransition()],
-  host:{ '[@routerTransition]' : ''},
+  // animations: [routerTransition()],
+  // host:{ '[@routerTransition]' : ''},
 })
 export class SettingsComponent implements OnInit,OnDestroy {
 

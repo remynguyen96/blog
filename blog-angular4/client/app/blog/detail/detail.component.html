@@ -3,14 +3,21 @@
     <div class="col m8 offset-m2">
       <div class="card">
         <div class="card-image">
-          <img style="width:50%" [src]="dataBlog.images" [alt]="dataBlog.title" class="responsive-img">
+          <img [src]="dataBlog.images" [alt]="dataBlog.title" class="responsive-img">
           <span class="card-title black-text">{{dataBlog.title}}</span>
         </div>
         <div class="card-content">
           <p class="green-text">{{dataBlog.excerpt}}</p>
         </div>
         <div class="card-action">
-          <a href="#" class="btn waves-effect waves-light" (click)="editDetail($event)">Edit -- {{dataBlog.slug}}</a>
+            <a mz-button [routerLink]="['edit']">
+              <i class="left material-icons">create</i>
+              edit post
+            </a>
+            <a mz-button [routerLink]="['edit']" class="right red accent-3 ">
+              <i class="left material-icons">clear</i>
+              delete post
+            </a>
         </div>
       </div>
     </div>

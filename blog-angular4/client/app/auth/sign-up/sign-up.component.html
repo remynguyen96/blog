@@ -16,7 +16,7 @@
               <div class='input-field col m12'>
                 <i class="material-icons prefix">person_outline</i>
                 <input type='text' id='name' formControlName="name" [ngClass]="{
-                  'validErr' : sign_up.get('name').errors && (sign_up.get('name').touched || sign_up.get('name').dirty), 'validFul' : sign_up.get('name').errors === null }" autocomplete="off" />
+                  'validErr' : isValid('name'), 'validFul' : sign_up.get('name').errors === null }" autocomplete="off" />
                 <label for='name'>Enter your name</label>
                 <!-- NOTE: Not run ng-template -->
                 <ng-template *ngIf="sign_up.get('name').errors">
@@ -33,13 +33,13 @@
               <div class='input-field col m12'>
                 <i class="material-icons prefix">mail_outline</i>
                 <input type='text' id='email' formControlName="email" [ngClass]="{
-                  'validErr' : sign_up.get('email').errors && (sign_up.get('email').touched || sign_up.get('email').dirty), 'validFul' : sign_up.get('email').errors === null }" autocomplete="off" />
+                  'validErr' : isValid('email'), 'validFul' : sign_up.get('email').errors === null }" autocomplete="off" />
                 <label for='email'>Enter your email</label>
               </div>
               <!-- NOTE: Field Password -->
               <div class='input-field col m12'>
                 <i class="material-icons prefix">lock_outline</i>
-                <input type="password" id="password" formControlName="password" [ngClass]="{'validErr' : sign_up.get('password').errors && (sign_up.get('password').touched || sign_up.get('password').dirty),
+                <input type="password" id="password" formControlName="password" [ngClass]="{'validErr' : isValid('password'),
                 'validFul' : sign_up.get('password').errors === null }"
                 autocomplete="off"/>
                 <label for='password'>Enter your password</label>
@@ -51,7 +51,7 @@
               <div class='input-field col m12'>
                 <i class="material-icons prefix">lock_outline</i>
                 <input type="password" id="password_confirm" formControlName="password_confirm" [ngClass]="{
-                  'validErr' : sign_up.get('password_confirm').errors && (sign_up.get('password_confirm').touched || sign_up.get('password_confirm').dirty),
+                  'validErr' : isValid('password_confirm'),
                   'validFul' : sign_up.get('password_confirm').errors === null }"
                 autocomplete="off"/>
                 <label for='password_confirm'>Enter your password confirm</label>

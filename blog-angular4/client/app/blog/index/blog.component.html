@@ -3,7 +3,7 @@
     <div class="row">
       <!-- NOTE: Sort -->
       <mz-select-container>
-        <div class="col m4 input-field">
+        <div class="col m3 input-field">
            <select mz-select  class="icons" [(ngModel)]="sortBlogs" (change)="sortType()">
              <option *ngFor="let item of sort" [ngValue]="item.name" [attr.data-icon]="item.images" class="left circle">{{item.name}}</option>
            </select>
@@ -12,7 +12,7 @@
       </mz-select-container>
       <!-- NOTE: filter  -->
       <mz-select-container>
-        <div class="col m4 input-field">
+        <div class="col m3 input-field">
            <select mz-select  class="icons" [(ngModel)]="filterBlogs" (change)="filterType()">
              <option *ngFor="let item of filter" [ngValue]="item.name" [attr.data-icon]="item.images" class="circle">{{item.name}}</option>
            </select>
@@ -20,50 +20,71 @@
         </div>
       </mz-select-container>
       <!-- NOTE: Search Pipe -->
-      <div class="col m4 input-field">
+      <div class="col m3 input-field">
         <input type="text" id="search" [(ngModel)]="queryBlogs">
         <label for="search">Search
           <span *ngIf="queryBlogs"> for : <strong>{{queryBlogs}}</strong></span>
         </label>
       </div>
-        <!-- NOTE:  Search Server -->
-      <div class="col m6 offset-m3 input-field">
-          <input id="searchAll" type="text" [(ngModel)]="searchAll">
-          <label for="searchAll">
-              Search all
-             <span *ngIf="searchAll"> for : <strong>{{searchAll}}</strong></span>
-          </label>
+
+      <div class="col m3 right">
+        <input type="file" #upload accept=".xlsx" (change)="handingImport()">
+        <button mz-button mz-tooltip (click)="importExcel()"
+          [float]="'true'"
+          [tooltip]="'Import file excel'"
+          [position]="top"
+          [delay]="350"
+          >
+          <i mz-icon [icon]="'cloud_upload'"></i>
+        </button>
+        <!-- download -->
+        <a href="#download" #download></a>
+        <button mz-button mz-tooltip class="blue" (click)="exportExcel()"
+          [float]="'true'"
+          [tooltip]="'Export file excel'"
+          [position]="bottom"
+          [delay]="350">
+          <i mz-icon [icon]="'cloud_download'"></i>
+        </button>
       </div>
     </div>
   </div>
 
-
-  <div class="col m12">
     <!-- NOTE: List Blogs -->
-    <ul class="collection">
-      <li class="collection-item avatar blue-grey darken-2" *ngFor="let blog of (dataBlog | searchBlog: queryBlogs);let i = index">
-        <img  [src]="urlImage+'/'+blog.images" [alt]="blog.title" class="circle">
-        <a [routerLink]="[blog.slug]" ><span class="title">{{blog.title}}</span></a>
-        <p>{{blog.excerpt}} <br> {{blog.description}}
-        </p>
-        <a href="#favorite-blogs" class="secondary-content" (click)="favoriteBlog($event)">
-          <i class="material-icons">star_border</i>
-        </a>
-      </li>
-    </ul>
+  <div class="col m12">
+      <table class="bordered centered highlight listBlogs">
+       <thead>
+         <tr>
+             <th *ngFor="let item of keyBlogs">{{item}}</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr *ngFor="let blog of (dataBlog | searchBlog: queryBlogs : 'title');let i = index" [routerLink]="[blog.slug]">
+           <td width="5%">{{blog.id}}</td>
+           <td width="22%">{{blog.title}}</td>
+           <td width="22%">{{blog.slug}}</td>
+           <td width="25%">{{blog.excerpt}}</td>
+           <td width="5%">{{blog.user_id}}</td>
+           <td width="5%">{{blog.status}}</td>
+           <td width="8%">{{blog.created_at | date:'dd-MM-y'}}</td>
+           <td width="8%">{{blog.updated_at | date:'dd-MM-y'}}</td>
+         </tr>
+       </tbody>
+     </table>
     <!-- NOTE: Loading -->
-    <div class="center" *ngIf="loadEvent">
-      <mz-spinner
-        [color]="'green'"
-        [size]="'medium'">
-      </mz-spinner>
-    </div>
-
+      <div class="center" *ngIf="loadEvent">
+        <mz-spinner
+          [color]="'green'"
+          [size]="'medium'">
+        </mz-spinner>
+      </div>
   </div>
-</div>
-<!-- NOTE: Load more -->
-<div class="row center-align">
-  <button class="col m6 offset-m3 btn waves-effect waves-light" (click)="loadMore()">
-    Load More
-  </button>
+
+  <!-- NOTE: Load more -->
+  <div class="center-align">
+    <button mz-button (click)="loadMore()" style="margin-top:30px">
+      Load More
+    </button>
+  </div>
+
 </div>

@@ -23,14 +23,8 @@ export class BlogService extends GlobalService  {
     super(http,router);
   }
 
-  // getAllNext(countData : number) : Observable<any>{
-  //   return this.http.post(`${this.getURL()}/get-all-next`,{totalBlogCurrent : countData},this.options)
-  //                    .map((response : Response) => response.json())
-  //                    .catch(this.handleError);
-  // }
-
   getListBlogs(page : number) : Observable<any> {
-     return this.http.get(`${this.getURL()}/news?page=${page}`,this.options)
+     return this.http.get(`${this.getURL()}?page=${page}`,this.options)
                       .map((response : Response) => response.json())
                       .catch(this.handleError);
   }

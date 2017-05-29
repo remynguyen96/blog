@@ -4,8 +4,6 @@ namespace App\Http\Controllers\backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
-use App\Blog;
 use App\Repositories\Blog\BlogInterface;
 
 class BlogController extends Controller
@@ -39,20 +37,8 @@ class BlogController extends Controller
 
     }
 
-    function getAllNext(){
-      $count = request()->totalBlogCurrent;
-      $blog = Blog::orderBy('id','desc')->offset($count)->limit(2)->with('category')->with('user')->get();
-      $totalBlog = Blog::all()->count();
-      if($count + 2 >= $totalBlog) {
-        return response()->json(['last' => $blog],200);
-      }else{
-        return response()->json(['next' => $blog],200);
-      }
-    }
-
-
     function infiniteScroller(){
-      $blog = Blog::orderBy('id','desc')->paginate(10);
+      $blog = \App\Blog::orderBy('id','desc')->paginate(10);
       return response()->json($blog,200);
     }
 }
