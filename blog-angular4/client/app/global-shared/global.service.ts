@@ -12,7 +12,7 @@ export class GlobalService {
 
   constructor(private _http : Http , private _router : Router) {
     let headers = new Headers({'X-Requested-With' : 'XMLHttpRequest'});
-    headers.append('Content-Type', 'application/json');
+    // headers.append('Content-Type', 'application/json');
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
     this.options = new RequestOptions({ headers : headers });
   }

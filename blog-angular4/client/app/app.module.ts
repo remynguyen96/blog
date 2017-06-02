@@ -4,12 +4,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterializeModule } from 'ng2-materialize';
-////////////////////
+// NOTE: Service Component
 import { AppRoutingModule } from "./app.routing";
 import { AuthService } from "./auth/shared/auth.service";
 import { AuthGuard } from "./auth/guard/auth.guard";
 import { DeactiveAuthGuard } from "./auth/guard/deactiveAuth.guard";
-////////////////////
+// NOTE: All Component
 import { AppComponent } from './index/app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { EventsComponent } from './events/events.component';
